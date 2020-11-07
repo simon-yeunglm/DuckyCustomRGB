@@ -256,9 +256,17 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		KeyboardState	ctrlUpState			= KeyboardState(ctrlUpKeys, _countof(ctrlUpKeys));
 		macroPlayer.addMacro(ctrlUpState	, volumeRepeatTime, volumeRepeatDelay, 1, new MacroAction_VolumeUp());
 		
+		KeyboardKey		ctrlRightKeys[]		= {KeyboardKey::Arrow_Right	, KeyboardKey::Control_Right};
+		KeyboardState	ctrlRightState		= KeyboardState(ctrlRightKeys, _countof(ctrlRightKeys));
+		macroPlayer.addMacro(ctrlRightState	, volumeRepeatTime, volumeRepeatDelay, 1, new MacroAction_VolumeUp());
+		
 		KeyboardKey		ctrlDownKeys[]		= {KeyboardKey::Arrow_Down	, KeyboardKey::Control_Right};
 		KeyboardState	ctrlDownState		= KeyboardState(ctrlDownKeys, _countof(ctrlDownKeys));
 		macroPlayer.addMacro(ctrlDownState	, volumeRepeatTime, volumeRepeatDelay, 1, new MacroAction_VolumeDown());
+		
+		KeyboardKey		ctrlLeftKeys[]		= {KeyboardKey::Arrow_Left	, KeyboardKey::Control_Right};
+		KeyboardState	ctrlLeftState		= KeyboardState(ctrlLeftKeys, _countof(ctrlLeftKeys));
+		macroPlayer.addMacro(ctrlLeftState	, volumeRepeatTime, volumeRepeatDelay, 1, new MacroAction_VolumeDown());
 		
 		// set keyboard LED
 		RenderGraph* renderGraph= new RenderGraph(keyboard);
