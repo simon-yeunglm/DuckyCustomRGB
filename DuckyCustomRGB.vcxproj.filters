@@ -1,0 +1,284 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="source">
+      <UniqueIdentifier>{7706e18f-250d-4c67-949d-5a56972b0afc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\audio">
+      <UniqueIdentifier>{d1982576-aca3-48c7-ab68-27f0405d06d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\collection">
+      <UniqueIdentifier>{e3cf8ab0-a508-4b11-80c3-8cd810724580}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\hid">
+      <UniqueIdentifier>{f41f9a7b-48be-4548-a6e8-4a3aaf311ac2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\keyboard">
+      <UniqueIdentifier>{fbe49908-5657-4dce-97aa-1a969dd82f5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\macro">
+      <UniqueIdentifier>{3e872592-aa5a-4303-8522-0694b09332ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\math">
+      <UniqueIdentifier>{69dd40ed-5fdf-42fb-962d-7fbb2635a104}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\render">
+      <UniqueIdentifier>{c8eb4f92-0ae1-4575-8eee-dd277580475b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\util">
+      <UniqueIdentifier>{4bbae8a6-7558-4635-8d70-887f81c793a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\macro\action">
+      <UniqueIdentifier>{5dbc1a62-35e6-485c-82de-76c14b7e6f95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\render\pass">
+      <UniqueIdentifier>{8b4d26a7-50e1-4f16-a78e-3a1f16e9dae5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resource">
+      <UniqueIdentifier>{d2c2542b-0433-4366-aa56-f7b2f29a17a2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="source\audio\Audio.cpp">
+      <Filter>source\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="source\hid\HID.cpp">
+      <Filter>source\hid</Filter>
+    </ClCompile>
+    <ClCompile Include="source\hid\HIDDevice.cpp">
+      <Filter>source\hid</Filter>
+    </ClCompile>
+    <ClCompile Include="source\keyboard\Keyboard.cpp">
+      <Filter>source\keyboard</Filter>
+    </ClCompile>
+    <ClCompile Include="source\keyboard\Keyboard_One2RGB_TKL.cpp">
+      <Filter>source\keyboard</Filter>
+    </ClCompile>
+    <ClCompile Include="source\keyboard\KeyboardKey.cpp">
+      <Filter>source\keyboard</Filter>
+    </ClCompile>
+    <ClCompile Include="source\macro\MacroAction.cpp">
+      <Filter>source\macro</Filter>
+    </ClCompile>
+    <ClCompile Include="source\macro\MacroPlayer.cpp">
+      <Filter>source\macro</Filter>
+    </ClCompile>
+    <ClCompile Include="source\macro\MacroSequence.cpp">
+      <Filter>source\macro</Filter>
+    </ClCompile>
+    <ClCompile Include="source\macro\action\MacroAction_Delay.cpp">
+      <Filter>source\macro\action</Filter>
+    </ClCompile>
+    <ClCompile Include="source\macro\action\MacroAction_KeyDown.cpp">
+      <Filter>source\macro\action</Filter>
+    </ClCompile>
+    <ClCompile Include="source\macro\action\MacroAction_KeyPress.cpp">
+      <Filter>source\macro\action</Filter>
+    </ClCompile>
+    <ClCompile Include="source\macro\action\MacroAction_KeyUp.cpp">
+      <Filter>source\macro\action</Filter>
+    </ClCompile>
+    <ClCompile Include="source\macro\action\MacroAction_OpenExe.cpp">
+      <Filter>source\macro\action</Filter>
+    </ClCompile>
+    <ClCompile Include="source\macro\action\MacroAction_VolumeDown.cpp">
+      <Filter>source\macro\action</Filter>
+    </ClCompile>
+    <ClCompile Include="source\macro\action\MacroAction_VolumeUp.cpp">
+      <Filter>source\macro\action</Filter>
+    </ClCompile>
+    <ClCompile Include="source\math\Color.cpp">
+      <Filter>source\math</Filter>
+    </ClCompile>
+    <ClCompile Include="source\math\Math.cpp">
+      <Filter>source\math</Filter>
+    </ClCompile>
+    <ClCompile Include="source\math\vector.cpp">
+      <Filter>source\math</Filter>
+    </ClCompile>
+    <ClCompile Include="source\util\Timer.cpp">
+      <Filter>source\util</Filter>
+    </ClCompile>
+    <ClCompile Include="source\render\RenderGraph.cpp">
+      <Filter>source\render</Filter>
+    </ClCompile>
+    <ClCompile Include="source\render\RenderPass.cpp">
+      <Filter>source\render</Filter>
+    </ClCompile>
+    <ClCompile Include="source\render\RenderTargetPool.cpp">
+      <Filter>source\render</Filter>
+    </ClCompile>
+    <ClCompile Include="source\render\pass\RenderPass_AudioVolumeBar.cpp">
+      <Filter>source\render\pass</Filter>
+    </ClCompile>
+    <ClCompile Include="source\render\pass\RenderPass_ColorBreath.cpp">
+      <Filter>source\render\pass</Filter>
+    </ClCompile>
+    <ClCompile Include="source\render\pass\RenderPass_ColorScroll.cpp">
+      <Filter>source\render\pass</Filter>
+    </ClCompile>
+    <ClCompile Include="source\render\pass\RenderPass_Idle.cpp">
+      <Filter>source\render\pass</Filter>
+    </ClCompile>
+    <ClCompile Include="source\render\pass\RenderPass_KeyLockBlink.cpp">
+      <Filter>source\render\pass</Filter>
+    </ClCompile>
+    <ClCompile Include="source\render\pass\RenderPass_KeyStateBlend.cpp">
+      <Filter>source\render\pass</Filter>
+    </ClCompile>
+    <ClCompile Include="source\render\pass\RenderPass_ReactiveKey.cpp">
+      <Filter>source\render\pass</Filter>
+    </ClCompile>
+    <ClCompile Include="source\render\pass\RenderPass_ReactivePulse.cpp">
+      <Filter>source\render\pass</Filter>
+    </ClCompile>
+    <ClCompile Include="source\render\pass\RenderPass_ReactiveRipple.cpp">
+      <Filter>source\render\pass</Filter>
+    </ClCompile>
+    <ClCompile Include="source\main.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="source\audio\Audio.h">
+      <Filter>source\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="source\audio\AudioEndpointVolumeCallback.h">
+      <Filter>source\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="source\audio\AudioVolumeCallback.h">
+      <Filter>source\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="source\collection\Array.h">
+      <Filter>source\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="source\hid\HID.h">
+      <Filter>source\hid</Filter>
+    </ClInclude>
+    <ClInclude Include="source\hid\HIDDef.h">
+      <Filter>source\hid</Filter>
+    </ClInclude>
+    <ClInclude Include="source\hid\HIDDevice.h">
+      <Filter>source\hid</Filter>
+    </ClInclude>
+    <ClInclude Include="source\keyboard\Keyboard.h">
+      <Filter>source\keyboard</Filter>
+    </ClInclude>
+    <ClInclude Include="source\keyboard\Keyboard_One2RGB_TKL.h">
+      <Filter>source\keyboard</Filter>
+    </ClInclude>
+    <ClInclude Include="source\keyboard\KeyboardKey.h">
+      <Filter>source\keyboard</Filter>
+    </ClInclude>
+    <ClInclude Include="source\keyboard\KeyboardState.h">
+      <Filter>source\keyboard</Filter>
+    </ClInclude>
+    <ClInclude Include="source\macro\MacroAction.h">
+      <Filter>source\macro</Filter>
+    </ClInclude>
+    <ClInclude Include="source\macro\MacroPlayer.h">
+      <Filter>source\macro</Filter>
+    </ClInclude>
+    <ClInclude Include="source\macro\MacroSequence.h">
+      <Filter>source\macro</Filter>
+    </ClInclude>
+    <ClInclude Include="source\macro\action\MacroAction_Delay.h">
+      <Filter>source\macro\action</Filter>
+    </ClInclude>
+    <ClInclude Include="source\macro\action\MacroAction_KeyDown.h">
+      <Filter>source\macro\action</Filter>
+    </ClInclude>
+    <ClInclude Include="source\macro\action\MacroAction_KeyPress.h">
+      <Filter>source\macro\action</Filter>
+    </ClInclude>
+    <ClInclude Include="source\macro\action\MacroAction_KeyUp.h">
+      <Filter>source\macro\action</Filter>
+    </ClInclude>
+    <ClInclude Include="source\macro\action\MacroAction_OpenExe.h">
+      <Filter>source\macro\action</Filter>
+    </ClInclude>
+    <ClInclude Include="source\macro\action\MacroAction_VolumeDown.h">
+      <Filter>source\macro\action</Filter>
+    </ClInclude>
+    <ClInclude Include="source\macro\action\MacroAction_VolumeUp.h">
+      <Filter>source\macro\action</Filter>
+    </ClInclude>
+    <ClInclude Include="source\math\Color.h">
+      <Filter>source\math</Filter>
+    </ClInclude>
+    <ClInclude Include="source\math\Math.h">
+      <Filter>source\math</Filter>
+    </ClInclude>
+    <ClInclude Include="source\math\vector.h">
+      <Filter>source\math</Filter>
+    </ClInclude>
+    <ClInclude Include="source\util\Timer.h">
+      <Filter>source\util</Filter>
+    </ClInclude>
+    <ClInclude Include="source\render\RenderGraph.h">
+      <Filter>source\render</Filter>
+    </ClInclude>
+    <ClInclude Include="source\render\RenderLayout.h">
+      <Filter>source\render</Filter>
+    </ClInclude>
+    <ClInclude Include="source\render\RenderPass.h">
+      <Filter>source\render</Filter>
+    </ClInclude>
+    <ClInclude Include="source\render\RenderTarget.h">
+      <Filter>source\render</Filter>
+    </ClInclude>
+    <ClInclude Include="source\render\RenderTargetPool.h">
+      <Filter>source\render</Filter>
+    </ClInclude>
+    <ClInclude Include="source\render\pass\RenderPass_AudioVolumeBar.h">
+      <Filter>source\render\pass</Filter>
+    </ClInclude>
+    <ClInclude Include="source\render\pass\RenderPass_ColorBreath.h">
+      <Filter>source\render\pass</Filter>
+    </ClInclude>
+    <ClInclude Include="source\render\pass\RenderPass_ColorScroll.h">
+      <Filter>source\render\pass</Filter>
+    </ClInclude>
+    <ClInclude Include="source\render\pass\RenderPass_Idle.h">
+      <Filter>source\render\pass</Filter>
+    </ClInclude>
+    <ClInclude Include="source\render\pass\RenderPass_KeyLockBlink.h">
+      <Filter>source\render\pass</Filter>
+    </ClInclude>
+    <ClInclude Include="source\render\pass\RenderPass_KeyStateBlend.h">
+      <Filter>source\render\pass</Filter>
+    </ClInclude>
+    <ClInclude Include="source\render\pass\RenderPass_ReactiveKey.h">
+      <Filter>source\render\pass</Filter>
+    </ClInclude>
+    <ClInclude Include="source\render\pass\RenderPass_ReactivePulse.h">
+      <Filter>source\render\pass</Filter>
+    </ClInclude>
+    <ClInclude Include="source\render\pass\RenderPass_ReactiveRipple.h">
+      <Filter>source\render\pass</Filter>
+    </ClInclude>
+    <ClInclude Include="source\win.h">
+      <Filter>source</Filter>
+    </ClInclude>
+    <ClInclude Include="source\keyboard\USBPcap.h">
+      <Filter>source\keyboard</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="source\keyboard\Keyboard_One2RGB_TKL_connect.inl">
+      <Filter>source\keyboard</Filter>
+    </None>
+    <None Include="source\keyboard\Keyboard_One2RGB_TKL_disconnect.inl">
+      <Filter>source\keyboard</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="DuckyCustomRGB.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="resource\icon.ico">
+      <Filter>resource</Filter>
+    </Image>
+  </ItemGroup>
+</Project>

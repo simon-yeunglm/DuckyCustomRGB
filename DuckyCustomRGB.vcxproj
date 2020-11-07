@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{85021A66-624D-4FA1-8642-69C6DAA10821}</ProjectGuid>
+    <RootNamespace>DuckyCustomRGB</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)bin\$(PlatformShortName)\$(Configuration)\$(ProjectName)\</OutDir>
+    <IntDir>$(SolutionDir)build\$(PlatformShortName)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)bin\$(PlatformShortName)\$(Configuration)\$(ProjectName)\</OutDir>
+    <IntDir>$(SolutionDir)build\$(PlatformShortName)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)bin\$(PlatformShortName)\$(Configuration)\$(ProjectName)\</OutDir>
+    <IntDir>$(SolutionDir)build\$(PlatformShortName)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)bin\$(PlatformShortName)\$(Configuration)\$(ProjectName)\</OutDir>
+    <IntDir>$(SolutionDir)build\$(PlatformShortName)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)/source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ExceptionHandling>false</ExceptionHandling>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+    </ClCompile>
+    <Link>
+      <SubSystem>NotSet</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>setupapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)/source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ExceptionHandling>false</ExceptionHandling>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+    </ClCompile>
+    <Link>
+      <SubSystem>NotSet</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>setupapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)/source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ExceptionHandling>false</ExceptionHandling>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+    </ClCompile>
+    <Link>
+      <SubSystem>NotSet</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>setupapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)/source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ExceptionHandling>false</ExceptionHandling>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+    </ClCompile>
+    <Link>
+      <SubSystem>NotSet</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>setupapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="source\audio\Audio.cpp" />
+    <ClCompile Include="source\hid\HID.cpp" />
+    <ClCompile Include="source\hid\HIDDevice.cpp" />
+    <ClCompile Include="source\keyboard\Keyboard.cpp" />
+    <ClCompile Include="source\keyboard\KeyboardKey.cpp" />
+    <ClCompile Include="source\keyboard\Keyboard_One2RGB_TKL.cpp" />
+    <ClCompile Include="source\macro\action\MacroAction_Delay.cpp" />
+    <ClCompile Include="source\macro\action\MacroAction_KeyDown.cpp" />
+    <ClCompile Include="source\macro\action\MacroAction_KeyPress.cpp" />
+    <ClCompile Include="source\macro\action\MacroAction_KeyUp.cpp" />
+    <ClCompile Include="source\macro\action\MacroAction_OpenExe.cpp" />
+    <ClCompile Include="source\macro\action\MacroAction_VolumeDown.cpp" />
+    <ClCompile Include="source\macro\action\MacroAction_VolumeUp.cpp" />
+    <ClCompile Include="source\macro\MacroAction.cpp" />
+    <ClCompile Include="source\macro\MacroPlayer.cpp" />
+    <ClCompile Include="source\macro\MacroSequence.cpp" />
+    <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\math\Color.cpp" />
+    <ClCompile Include="source\math\Math.cpp" />
+    <ClCompile Include="source\math\vector.cpp" />
+    <ClCompile Include="source\render\pass\RenderPass_AudioVolumeBar.cpp" />
+    <ClCompile Include="source\render\pass\RenderPass_ColorBreath.cpp" />
+    <ClCompile Include="source\render\pass\RenderPass_ColorScroll.cpp" />
+    <ClCompile Include="source\render\pass\RenderPass_Idle.cpp" />
+    <ClCompile Include="source\render\pass\RenderPass_KeyLockBlink.cpp" />
+    <ClCompile Include="source\render\pass\RenderPass_KeyStateBlend.cpp" />
+    <ClCompile Include="source\render\pass\RenderPass_ReactiveKey.cpp" />
+    <ClCompile Include="source\render\pass\RenderPass_ReactivePulse.cpp" />
+    <ClCompile Include="source\render\pass\RenderPass_ReactiveRipple.cpp" />
+    <ClCompile Include="source\render\RenderGraph.cpp" />
+    <ClCompile Include="source\render\RenderPass.cpp" />
+    <ClCompile Include="source\render\RenderTargetPool.cpp" />
+    <ClCompile Include="source\util\Timer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="source\audio\Audio.h" />
+    <ClInclude Include="source\audio\AudioEndpointVolumeCallback.h" />
+    <ClInclude Include="source\audio\AudioVolumeCallback.h" />
+    <ClInclude Include="source\collection\Array.h" />
+    <ClInclude Include="source\hid\HID.h" />
+    <ClInclude Include="source\hid\HIDDef.h" />
+    <ClInclude Include="source\hid\HIDDevice.h" />
+    <ClInclude Include="source\keyboard\Keyboard.h" />
+    <ClInclude Include="source\keyboard\KeyboardKey.h" />
+    <ClInclude Include="source\keyboard\KeyboardState.h" />
+    <ClInclude Include="source\keyboard\Keyboard_One2RGB_TKL.h" />
+    <ClInclude Include="source\keyboard\USBPcap.h" />
+    <ClInclude Include="source\macro\action\MacroAction_Delay.h" />
+    <ClInclude Include="source\macro\action\MacroAction_KeyDown.h" />
+    <ClInclude Include="source\macro\action\MacroAction_KeyPress.h" />
+    <ClInclude Include="source\macro\action\MacroAction_KeyUp.h" />
+    <ClInclude Include="source\macro\action\MacroAction_OpenExe.h" />
+    <ClInclude Include="source\macro\action\MacroAction_VolumeDown.h" />
+    <ClInclude Include="source\macro\action\MacroAction_VolumeUp.h" />
+    <ClInclude Include="source\macro\MacroAction.h" />
+    <ClInclude Include="source\macro\MacroPlayer.h" />
+    <ClInclude Include="source\macro\MacroSequence.h" />
+    <ClInclude Include="source\math\Color.h" />
+    <ClInclude Include="source\math\Math.h" />
+    <ClInclude Include="source\math\vector.h" />
+    <ClInclude Include="source\render\pass\RenderPass_AudioVolumeBar.h" />
+    <ClInclude Include="source\render\pass\RenderPass_ColorBreath.h" />
+    <ClInclude Include="source\render\pass\RenderPass_ColorScroll.h" />
+    <ClInclude Include="source\render\pass\RenderPass_Idle.h" />
+    <ClInclude Include="source\render\pass\RenderPass_KeyLockBlink.h" />
+    <ClInclude Include="source\render\pass\RenderPass_KeyStateBlend.h" />
+    <ClInclude Include="source\render\pass\RenderPass_ReactiveKey.h" />
+    <ClInclude Include="source\render\pass\RenderPass_ReactivePulse.h" />
+    <ClInclude Include="source\render\pass\RenderPass_ReactiveRipple.h" />
+    <ClInclude Include="source\render\RenderGraph.h" />
+    <ClInclude Include="source\render\RenderLayout.h" />
+    <ClInclude Include="source\render\RenderPass.h" />
+    <ClInclude Include="source\render\RenderTarget.h" />
+    <ClInclude Include="source\render\RenderTargetPool.h" />
+    <ClInclude Include="source\util\Timer.h" />
+    <ClInclude Include="source\win.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="source\keyboard\Keyboard_One2RGB_TKL_connect.inl" />
+    <None Include="source\keyboard\Keyboard_One2RGB_TKL_disconnect.inl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="DuckyCustomRGB.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="resource\icon.ico" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
