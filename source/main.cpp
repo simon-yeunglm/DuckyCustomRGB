@@ -324,7 +324,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		Sleep(1000);
 
 		// create hidden window to listen key press
-	    HWND windowHandle= createWindow(hInstance, keyboard);
+		HWND windowHandle= createWindow(hInstance, keyboard);
 
 		// start listening key press and update LED animation
 		timer.restart();
