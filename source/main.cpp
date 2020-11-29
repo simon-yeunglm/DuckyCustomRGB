@@ -256,17 +256,17 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		KeyboardState	ctrlUpState			= KeyboardState(ctrlUpKeys, _countof(ctrlUpKeys));
 		macroPlayer.addMacro(ctrlUpState	, volumeRepeatTime, volumeRepeatDelay, 1, new MacroAction_VolumeUp());
 		
-		KeyboardKey		ctrlRightKeys[]		= {KeyboardKey::Arrow_Right	, KeyboardKey::Control_Right};
-		KeyboardState	ctrlRightState		= KeyboardState(ctrlRightKeys, _countof(ctrlRightKeys));
-		macroPlayer.addMacro(ctrlRightState	, volumeRepeatTime, volumeRepeatDelay, 1, new MacroAction_VolumeUp());
+		KeyboardKey		ctrlInsKeys[]		= {KeyboardKey::Insert		, KeyboardKey::Control_Right};
+		KeyboardState	ctrlInsState		= KeyboardState(ctrlInsKeys, _countof(ctrlInsKeys));
+		macroPlayer.addMacro(ctrlInsState	, volumeRepeatTime, volumeRepeatDelay, 1, new MacroAction_VolumeUp());
 		
 		KeyboardKey		ctrlDownKeys[]		= {KeyboardKey::Arrow_Down	, KeyboardKey::Control_Right};
 		KeyboardState	ctrlDownState		= KeyboardState(ctrlDownKeys, _countof(ctrlDownKeys));
 		macroPlayer.addMacro(ctrlDownState	, volumeRepeatTime, volumeRepeatDelay, 1, new MacroAction_VolumeDown());
 		
-		KeyboardKey		ctrlLeftKeys[]		= {KeyboardKey::Arrow_Left	, KeyboardKey::Control_Right};
-		KeyboardState	ctrlLeftState		= KeyboardState(ctrlLeftKeys, _countof(ctrlLeftKeys));
-		macroPlayer.addMacro(ctrlLeftState	, volumeRepeatTime, volumeRepeatDelay, 1, new MacroAction_VolumeDown());
+		KeyboardKey		ctrlDelKeys[]		= {KeyboardKey::Delete	, KeyboardKey::Control_Right};
+		KeyboardState	ctrlDelState		= KeyboardState(ctrlDelKeys, _countof(ctrlDelKeys));
+		macroPlayer.addMacro(ctrlDelState	, volumeRepeatTime, volumeRepeatDelay, 1, new MacroAction_VolumeDown());
 		
 		// set keyboard LED
 		RenderGraph* renderGraph= new RenderGraph(keyboard);
@@ -294,7 +294,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		KeyboardKey ignorePressKeys[]= { KeyboardKey::F5, KeyboardKey::F7, KeyboardKey::SpaceBar, KeyboardKey::Enter };
 		KeyboardKey shortRippleKeys[]= { KeyboardKey::F5, KeyboardKey::F7, KeyboardKey::SpaceBar };
 		renderGraph->setGraph( 
-			new RenderPass_Idle(4.0f * 60.0f,
+			new RenderPass_Idle(14.0f * 60.0f,
 				new RenderPass_AudioVolumeBar(0.25f, 1.75f, 0.5f, 
 					new RenderPass_KeyLockBlink(2.0f,
 						new RenderPass_ReactiveRipple(			{ 1.0f, 0.5f, 0.1f }, { 1.0f, 0.85f, 0.2f }, 6.0f, 2.5f, 0.3f, KeyboardState(KeyboardKey::Enter		),	
@@ -345,7 +345,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 			// update quit timer
 			if (keyboard->isKeyDown(KeyboardKey::Escape))
-				quitTimer+= elapsedTime;
+				quitTimer+= Math::min(elapsedTime, 0.5f);	// min to avoid large delta time when wake up from blocking input
 			else
 				quitTimer= 0.0f;
 
