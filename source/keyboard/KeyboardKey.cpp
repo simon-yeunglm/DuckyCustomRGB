@@ -30,10 +30,10 @@ static const KeyboardKey	s_scanCodeToKey[]=
 	KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Home			, 	// 190 - 199
 	KeyboardKey::Arrow_Up		, KeyboardKey::PageUp			, KeyboardKey::Num			, KeyboardKey::Arrow_Left	, KeyboardKey::Num			, KeyboardKey::Arrow_Right		, KeyboardKey::Num			, KeyboardKey::End				, KeyboardKey::Arrow_Down	, KeyboardKey::PageDown		, 	// 200 - 209
 	KeyboardKey::Insert			, KeyboardKey::Delete			, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Windows_Left	, 	// 210 - 219
-	KeyboardKey::Windows_Right	//, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num			, 	// 220 - 229
-//	KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num			, 	// 230 - 239
-//	KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num			, 	// 240 - 249
-//	KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num				, //KeyboardKey::Num	, KeyboardKey::Num	, KeyboardKey::Num	, KeyboardKey::Num	, 
+	KeyboardKey::Windows_Right	, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num			, 	// 220 - 229
+	KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num			, 	// 230 - 239
+	KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num			, 	// 240 - 249
+	KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num				, //KeyboardKey::Num	, KeyboardKey::Num	, KeyboardKey::Num	, KeyboardKey::Num	, 
 };
 
 static_assert(((int)KeyboardKey::Num) == 108, "Please update s_keyToStr array");

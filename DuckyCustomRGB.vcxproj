@@ -177,6 +177,7 @@
     <ClCompile Include="source\macro\action\MacroAction_KeyPress.cpp" />
     <ClCompile Include="source\macro\action\MacroAction_KeyUp.cpp" />
     <ClCompile Include="source\macro\action\MacroAction_OpenExe.cpp" />
+    <ClCompile Include="source\macro\action\MacroAction_ScanCodePress.cpp" />
     <ClCompile Include="source\macro\action\MacroAction_VolumeDown.cpp" />
     <ClCompile Include="source\macro\action\MacroAction_VolumeUp.cpp" />
     <ClCompile Include="source\macro\MacroAction.cpp" />
@@ -219,6 +220,7 @@
     <ClInclude Include="source\macro\action\MacroAction_KeyPress.h" />
     <ClInclude Include="source\macro\action\MacroAction_KeyUp.h" />
     <ClInclude Include="source\macro\action\MacroAction_OpenExe.h" />
+    <ClInclude Include="source\macro\action\MacroAction_ScanCodePress.h" />
     <ClInclude Include="source\macro\action\MacroAction_VolumeDown.h" />
     <ClInclude Include="source\macro\action\MacroAction_VolumeUp.h" />
     <ClInclude Include="source\macro\MacroAction.h" />

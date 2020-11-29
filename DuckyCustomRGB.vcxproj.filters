@@ -138,6 +138,9 @@
     <ClCompile Include="source\main.cpp">
       <Filter>source</Filter>
     </ClCompile>
+    <ClCompile Include="source\macro\action\MacroAction_ScanCodePress.cpp">
+      <Filter>source\macro\action</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\audio\Audio.h">
@@ -264,6 +267,9 @@
       <Filter>source\keyboard</Filter>
     </ClInclude>
     <ClInclude Include="resource.h" />
+    <ClInclude Include="source\macro\action\MacroAction_ScanCodePress.h">
+      <Filter>source\macro\action</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="source\keyboard\Keyboard_One2RGB_TKL_connect.inl">
