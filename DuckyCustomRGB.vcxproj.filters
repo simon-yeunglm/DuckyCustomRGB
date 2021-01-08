@@ -141,6 +141,9 @@
     <ClCompile Include="source\macro\action\MacroAction_ScanCodePress.cpp">
       <Filter>source\macro\action</Filter>
     </ClCompile>
+    <ClCompile Include="source\macro\action\MacroAction_MediaPlayPause.cpp">
+      <Filter>source\macro\action</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\audio\Audio.h">
@@ -268,6 +271,9 @@
     </ClInclude>
     <ClInclude Include="resource.h" />
     <ClInclude Include="source\macro\action\MacroAction_ScanCodePress.h">
+      <Filter>source\macro\action</Filter>
+    </ClInclude>
+    <ClInclude Include="source\macro\action\MacroAction_MediaPlayPause.h">
       <Filter>source\macro\action</Filter>
     </ClInclude>
   </ItemGroup>

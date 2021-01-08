@@ -38,6 +38,7 @@
 #include "macro/action/MacroAction_Delay.h"
 #include "macro/action/MacroAction_VolumeUp.h"
 #include "macro/action/MacroAction_VolumeDown.h"
+#include "macro/action/MacroAction_MediaPlayPause.h"
 #include "macro/action/MacroAction_OpenExe.h"
 
 
@@ -267,6 +268,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		KeyboardKey		ctrlDelKeys[]		= {KeyboardKey::Delete	, KeyboardKey::Control_Right};
 		KeyboardState	ctrlDelState		= KeyboardState(ctrlDelKeys, _countof(ctrlDelKeys));
 		macroPlayer.addMacro(ctrlDelState	, volumeRepeatTime, volumeRepeatDelay, 1, new MacroAction_VolumeDown());
+		
+		KeyboardKey		ctrlHomeKeys[]		= {KeyboardKey::Home	, KeyboardKey::Control_Right};
+		KeyboardState	ctrlHomeState		= KeyboardState(ctrlHomeKeys, _countof(ctrlHomeKeys));
+		macroPlayer.addMacro(ctrlHomeState	, 0.0f, 0.0f, 1, new MacroAction_MediaPlayPause());
 		
 		// set keyboard LED
 		RenderGraph* renderGraph= new RenderGraph(keyboard);
