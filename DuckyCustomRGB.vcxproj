@@ -200,6 +200,7 @@
     <ClCompile Include="source\render\RenderGraph.cpp" />
     <ClCompile Include="source\render\RenderPass.cpp" />
     <ClCompile Include="source\render\RenderTargetPool.cpp" />
+    <ClCompile Include="source\usb\USBDevice.cpp" />
     <ClCompile Include="source\util\Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -215,7 +216,6 @@
     <ClInclude Include="source\keyboard\KeyboardKey.h" />
     <ClInclude Include="source\keyboard\KeyboardState.h" />
     <ClInclude Include="source\keyboard\Keyboard_One2RGB_TKL.h" />
-    <ClInclude Include="source\keyboard\USBPcap.h" />
     <ClInclude Include="source\macro\action\MacroAction_Delay.h" />
     <ClInclude Include="source\macro\action\MacroAction_KeyDown.h" />
     <ClInclude Include="source\macro\action\MacroAction_KeyPress.h" />
@@ -245,6 +245,8 @@
     <ClInclude Include="source\render\RenderPass.h" />
     <ClInclude Include="source\render\RenderTarget.h" />
     <ClInclude Include="source\render\RenderTargetPool.h" />
+    <ClInclude Include="source\usb\USBDevice.h" />
+    <ClInclude Include="source\usb\USBPcap.h" />
     <ClInclude Include="source\util\Timer.h" />
     <ClInclude Include="source\win.h" />
   </ItemGroup>

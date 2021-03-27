@@ -37,6 +37,9 @@
     <Filter Include="resource">
       <UniqueIdentifier>{d2c2542b-0433-4366-aa56-f7b2f29a17a2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="source\usb">
+      <UniqueIdentifier>{4ed7d4eb-5c4e-4af0-b9a4-a15b3cceb2e5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\audio\Audio.cpp">
@@ -143,6 +146,9 @@
     </ClCompile>
     <ClCompile Include="source\macro\action\MacroAction_MediaPlayPause.cpp">
       <Filter>source\macro\action</Filter>
+    </ClCompile>
+    <ClCompile Include="source\usb\USBDevice.cpp">
+      <Filter>source\usb</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -266,15 +272,18 @@
     <ClInclude Include="source\win.h">
       <Filter>source</Filter>
     </ClInclude>
-    <ClInclude Include="source\keyboard\USBPcap.h">
-      <Filter>source\keyboard</Filter>
-    </ClInclude>
     <ClInclude Include="resource.h" />
     <ClInclude Include="source\macro\action\MacroAction_ScanCodePress.h">
       <Filter>source\macro\action</Filter>
     </ClInclude>
     <ClInclude Include="source\macro\action\MacroAction_MediaPlayPause.h">
       <Filter>source\macro\action</Filter>
+    </ClInclude>
+    <ClInclude Include="source\usb\USBDevice.h">
+      <Filter>source\usb</Filter>
+    </ClInclude>
+    <ClInclude Include="source\usb\USBPcap.h">
+      <Filter>source\usb</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -4,9 +4,9 @@
 // all rights reserved
 
 #include "KeyboardState.h"
+#include "usb/USBDevice.h"
 #include "collection/Array.h"
 
-class HIDDevice;
 class Keyboard;
 
 typedef void (*KeyBoardKeyPressCallback)(Keyboard* keyboard, KeyboardKey key, bool isPressed, void* userPtr);
@@ -22,7 +22,7 @@ enum class KeyboardLayout
 	Full_JIS,
 };
 
-class Keyboard
+class Keyboard : public USBDevice
 {
 private:
 	struct KeyPressCallback
@@ -37,8 +37,6 @@ private:
 		}
 	};
 
-	HIDDevice*				m_device;
-	int						m_handledPacketNum;
 	Array<KeyPressCallback>	m_keyPressCallback;
 
 protected:
@@ -60,7 +58,6 @@ protected:
 	KeyboardLayout	m_layout;
 	KeyboardState	m_isPressed;
 
-	void	handlePacket(const void* packetBytes, int numBytes);
 	void	beginAddKey();
 	void	addKey(KeyboardKey key, unsigned char colorPacketIdx, unsigned char packetOffset);
 	void	endAddKey();
@@ -71,8 +68,6 @@ protected:
 	void	addKeyNumPad();
 	void	addKeyTKL_ANSI();
 	void	addKeyFull_ANSI();
-
-	void	wait(int time_ms);
 	
 public:
 	Keyboard(HIDDevice* device);
@@ -83,9 +78,6 @@ public:
 
 	// send all key color to keyboard
 	void	commitKeyColor();
-	
-	virtual void	connect();
-	virtual void	disconnect();
 	
 	void	registerKeyPressCallback(  KeyBoardKeyPressCallback callback, void* userPtr);
 	void	deregisterKeyPressCallback(KeyBoardKeyPressCallback callback, void* userPtr);
