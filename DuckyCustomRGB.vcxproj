@@ -188,6 +188,8 @@
     <ClCompile Include="source\math\Color.cpp" />
     <ClCompile Include="source\math\Math.cpp" />
     <ClCompile Include="source\math\vector.cpp" />
+    <ClCompile Include="source\mouse\Mouse.cpp" />
+    <ClCompile Include="source\mouse\Mouse_CorsairHarpoonRGBPro.cpp" />
     <ClCompile Include="source\render\pass\RenderPass_AudioVolumeBar.cpp" />
     <ClCompile Include="source\render\pass\RenderPass_ColorBreath.cpp" />
     <ClCompile Include="source\render\pass\RenderPass_ColorScroll.cpp" />
@@ -231,6 +233,8 @@
     <ClInclude Include="source\math\Color.h" />
     <ClInclude Include="source\math\Math.h" />
     <ClInclude Include="source\math\vector.h" />
+    <ClInclude Include="source\mouse\Mouse.h" />
+    <ClInclude Include="source\mouse\Mouse_CorsairHarpoonRGBPro.h" />
     <ClInclude Include="source\render\pass\RenderPass_AudioVolumeBar.h" />
     <ClInclude Include="source\render\pass\RenderPass_ColorBreath.h" />
     <ClInclude Include="source\render\pass\RenderPass_ColorScroll.h" />
@@ -253,6 +257,8 @@
   <ItemGroup>
     <None Include="source\keyboard\Keyboard_One2RGB_TKL_connect.inl" />
     <None Include="source\keyboard\Keyboard_One2RGB_TKL_disconnect.inl" />
+    <None Include="source\mouse\Mouse_CorsairHarpoonRGBPro_connect.inl" />
+    <None Include="source\mouse\Mouse_CorsairHarpoonRGBPro_disconnect.inl" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DuckyCustomRGB.rc" />

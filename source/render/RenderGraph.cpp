@@ -7,11 +7,15 @@
 #include "RenderTarget.h"
 #include "math/Math.h"
 #include "keyboard/Keyboard.h"
+#include "mouse/Mouse.h"
 #include <assert.h>
 
-RenderGraph::RenderGraph(Keyboard* keyboard)
+#define MOUSE_PX_WIDTH		(4)
+
+RenderGraph::RenderGraph(Keyboard* keyboard, Mouse* mouse)
 {
 	m_pass					= nullptr;
+	m_mouse					= mouse;
 	m_keyboard				= keyboard;
 	if (keyboard)
 	{
@@ -38,17 +42,19 @@ RenderGraph::~RenderGraph()
 
 void	RenderGraph::setLayoutTKL_ANSI()
 {
+	bool hasMouse= m_mouse != nullptr;
 	memset(&m_layout, 0, sizeof(m_layout));
 	addLayoutKeyTKL_ANSI();
-	m_renderTargetPool.init({72, 24});
+	m_renderTargetPool.init({72 + MOUSE_PX_WIDTH * hasMouse, 24});
 }
 
 void	RenderGraph::setLayoutFull_ANSI()
 {
+	bool hasMouse= m_mouse != nullptr;
 	memset(&m_layout, 0, sizeof(m_layout));
 	addLayoutKeyTKL_ANSI();
 	addLayoutKeyNumpad();
-	m_renderTargetPool.init({88, 24});
+	m_renderTargetPool.init({88 + MOUSE_PX_WIDTH * hasMouse, 24});
 }
 
 void	RenderGraph::addLayoutKeyTKL_ANSI()
@@ -185,6 +191,7 @@ void	RenderGraph::render()
 	RenderTarget* renderTarget= m_renderTargetPool.allocRT();
 	m_pass->render(&m_layout, &m_renderTargetPool, renderTarget);
 	setKeyboardColor(renderTarget);
+	setMouseColor(renderTarget);
 	m_renderTargetPool.freeRT(renderTarget);
 }
 
@@ -196,23 +203,52 @@ void	RenderGraph::setKeyboardColor(RenderTarget* renderTarget)
 	for(int i=0; i<(int)KeyboardKey::Num; ++i)
 	{
 		int4	pxRange		= m_layout.keyPixelPos[i];
-		int		numPx		= (pxRange.z - pxRange.x) * (pxRange.w - pxRange.y);
-		if (numPx <= 0)
-			continue;
-
-		float3	averageVal	= { 0, 0, 0 };
-		for(int x= pxRange.x; x<pxRange.z; ++x)
-			for(int y= pxRange.y; y<pxRange.w; ++y)
-			{
-				float4 pxColor= renderTarget->getPixel(x, y);
-				averageVal+= pxColor.xyz();
-			}
-		averageVal/= (float)numPx;
-		
-		unsigned char R= (unsigned char)(averageVal.x * 255);
-		unsigned char G= (unsigned char)(averageVal.y * 255);
-		unsigned char B= (unsigned char)(averageVal.z * 255);
-		m_keyboard->setKeyColor((KeyboardKey)i, R, G, B);
+		float Rf, Gf, Bf;
+		if (getRenderTargetAverageColorInRange(renderTarget, pxRange, &Rf, &Gf, &Bf))
+		{
+			unsigned char R= (unsigned char)(Rf * 255);
+			unsigned char G= (unsigned char)(Gf * 255);
+			unsigned char B= (unsigned char)(Bf * 255);
+			m_keyboard->setKeyColor((KeyboardKey)i, R, G, B);
+		}
 	}
 	m_keyboard->commitKeyColor();
+}
+
+bool	RenderGraph::getRenderTargetAverageColorInRange(RenderTarget* renderTarget, int4 pxRange, float* outR, float* outG, float* outB)
+{
+	int		numPx		= (pxRange.z - pxRange.x) * (pxRange.w - pxRange.y);
+	if (numPx <= 0)
+		return false;
+
+	float3	averageVal	= { 0, 0, 0 };
+	for(int x= pxRange.x; x<pxRange.z; ++x)
+		for(int y= pxRange.y; y<pxRange.w; ++y)
+		{
+			float4 pxColor= renderTarget->getPixel(x, y);
+			averageVal+= pxColor.xyz();
+		}
+	averageVal/= (float)numPx;
+		
+	*outR= averageVal.x;
+	*outG= averageVal.y;
+	*outB= averageVal.z;
+	return true;
+}
+
+void	RenderGraph::setMouseColor(RenderTarget* renderTarget)
+{
+	if (m_mouse == nullptr)
+		return;
+	int2	rtSz		= renderTarget->size;
+	int4	pxRange		= // use the same color as the right most key of the keyboard
+	{
+		rtSz.x - MOUSE_PX_WIDTH,
+		0,
+		rtSz.x,
+		rtSz.y,
+	};
+	float R, G, B;
+	if (getRenderTargetAverageColorInRange(renderTarget, pxRange, &R, &G, &B))
+		m_mouse->setColor(R, G, B);
 }

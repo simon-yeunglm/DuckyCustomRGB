@@ -16,6 +16,7 @@
 #include "hid/HID.h"
 #include "hid/HIDDevice.h"
 #include "keyboard/Keyboard_One2RGB_TKL.h"
+#include "mouse/Mouse_CorsairHarpoonRGBPro.h"
 #include "util/Timer.h"
 #include "math/Math.h"
 #include "audio/Audio.h"
@@ -152,9 +153,9 @@ Keyboard*	createKeyboard(HIDDevice* device, unsigned short keyboardID)
 
 	// TODO: use a hash table instead if have too many keyboard type
 	//       and load all the keyboard data from file instead of hard code Keyboard class
-	if (keyboardID == 0x0356)	// One 2 RGB TKL ANSI
+	if (keyboardID == Keyboard_One2RGB_TKL::productID	)	// One 2 RGB TKL ANSI
 		return new Keyboard_One2RGB_TKL(device);
-	if (keyboardID == 0x0348)	// Shine 7 ISO
+	if (keyboardID == 0x0348							)	// Shine 7 ISO
 		return nullptr;
 	else
 		return nullptr;
@@ -164,6 +165,24 @@ void		destroyKeyboard(Keyboard* keyboard)
 {
 	if (keyboard)
 		delete keyboard;
+}
+
+Mouse*	createMouse(HIDDevice* device, unsigned short mouseID)
+{
+	if (device == nullptr)
+		return nullptr;
+
+	// TODO: use a hash table instead
+	if (mouseID == Mouse_CorsairHarpoonRGBPro::productID)
+		return new Mouse_CorsairHarpoonRGBPro(device);
+	else
+		return nullptr;
+}
+
+void		destroyMouse(Mouse* mouse)
+{
+	if (mouse)
+		delete mouse;
 }
 
 HWND		createWindow(HINSTANCE hInstance, Keyboard* keyboard)
@@ -214,8 +233,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 #endif
 // // example debug code gen
 //	printPacketArrayString("Keyboard_One2RGB_TKL_connect_", 1970);
-//	printPacketArrayString("Keyboard_One2RGB_TKL_disconnect_", 298);
-	
+//	printPacketArrayString("Keyboard_One2RGB_TKL_disconnect_", 298);	
+//	printPacketArrayString("Mouse_CorsairHarpoonRGBPro_connect_", 32);
+//	printPacketArrayString("Mouse_CorsairHarpoonRGBPro_disconnect_", 2);
+ 
 	// lower program priority
 	HANDLE processHandle= GetCurrentProcess();
 	bool ok= SetPriorityClass(processHandle, IDLE_PRIORITY_CLASS);
@@ -226,14 +247,17 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	{
 		// init
 		const unsigned short	DuckyVID	= 0x04d9;
+		const unsigned short	CorsairVID	= 0x1b1c;
 		Audio::init();
 		HID::init();
-		HIDDevice*	deivce	= HIDDevice::createDevice(DuckyVID, 0, 1, 0xff00, 0x01);
-		Keyboard*	keyboard= createKeyboard(deivce, deivce->getProductID());
+		HIDDevice*	deivce_keyboard	= HIDDevice::createDevice(DuckyVID, 0, 1, 0xff00, 0x01);
+		Keyboard*	keyboard		= createKeyboard(deivce_keyboard, deivce_keyboard ? deivce_keyboard->getProductID() : 0);
+		HIDDevice*	deivce_mouse	= HIDDevice::createDevice(CorsairVID, 0, 1, 0xffc2, 0x04);
+		Mouse*		mouse			= createMouse(deivce_mouse, deivce_mouse ? deivce_mouse->getProductID() : 0);
 
 		Timer		timer;
 		MacroPlayer	macroPlayer;
-		RenderGraph*renderGraph= new RenderGraph(keyboard);
+		RenderGraph*renderGraph= new RenderGraph(keyboard, mouse);
 		
 		KeyboardKey		ctrlShiftKeys[]	= {KeyboardKey::Shift_Right	, KeyboardKey::Control_Right};
 		KeyboardState	ctrlShiftState	= KeyboardState(ctrlShiftKeys, _countof(ctrlShiftKeys));
@@ -317,6 +341,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 				)
 			)
 		);
+		
+		if (mouse)
+		{
+			mouse->connect();
+		}
 
 		if (keyboard)
 		{
@@ -331,6 +360,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 			Sleep(1000);
 		}
 
+
 		// create hidden window to listen key press
 		HWND windowHandle= createWindow(hInstance, keyboard);
 
@@ -340,6 +370,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		Sleep(1);
 		bool isBlockingInput= false;
 		float quitTimer= 0.0f;	// quit the program by holding the escape key for a while
+
 		while (quitTimer < QUIT_HOLD_ESC_TIME)
 		{
 			// poll input
@@ -386,12 +417,19 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 			keyboard->disconnect();
 			destroyKeyboard(keyboard);
 		}
+		if (mouse)
+		{
+			mouse->disconnect();
+			destroyMouse(mouse);
+		}
 		SetWindowLongPtr(windowHandle, GWLP_USERDATA, (LONG_PTR)nullptr);
 		destroyWindow(windowHandle);
 		delete renderGraph;
 
-		if (deivce)
-			HIDDevice::destroyDevice(deivce);
+		if (deivce_keyboard)
+			HIDDevice::destroyDevice(deivce_keyboard);
+		if (deivce_mouse)
+			HIDDevice::destroyDevice(deivce_mouse);
 		HID::release();
 		Audio::relrease();
 		if (s_rawInputData)

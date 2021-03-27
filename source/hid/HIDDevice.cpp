@@ -168,7 +168,7 @@ HIDDevice::HIDDevice(HANDLE deviceHandle, unsigned short vendorID, unsigned shor
 	m_interfaceID		= interfaceIdx		;
 	m_inputReportLength	= inputReportLength	;
 	m_outputReportLength= outputReportLength;
-	
+		
 	memset(&m_overlap, 0, sizeof(m_overlap));
 	m_overlap.hEvent = CreateEvent(nullptr, false, false, nullptr);
 }
@@ -184,7 +184,8 @@ int	HIDDevice::write(const unsigned char *data, int dataNumByte)
 #if DEBUG_DISABLE_HID_COMM
 	return 0;
 #else
-	assert(dataNumByte >= m_outputReportLength);
+	
+	assert(dataNumByte <= m_outputReportLength);
 	bool isOk= WriteFile(m_deviceHandle, data, dataNumByte, nullptr, &m_overlap);
 	if (!isOk)
 	{
@@ -205,7 +206,7 @@ int HIDDevice::read(unsigned char *data, int dataNumByte)
 #if DEBUG_DISABLE_HID_COMM
 	return 0;
 #else
-	assert(dataNumByte == m_inputReportLength);
+	assert(dataNumByte >= m_inputReportLength);
 	DWORD numByteRead= 0;
 	bool isOk= ReadFile(m_deviceHandle, data, dataNumByte, &numByteRead, &m_overlap);
 	

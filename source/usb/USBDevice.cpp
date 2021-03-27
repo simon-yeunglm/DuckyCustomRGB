@@ -34,13 +34,14 @@ void	USBDevice::handlePacket(const void* packetBytes, int numBytes)
 		return;	// no bytes to send
 
 	USBPCAP_BUFFER_PACKET_HEADER*	header		= (USBPCAP_BUFFER_PACKET_HEADER*)packetBytes;
-	unsigned char*					packetData	= ((unsigned char*)packetBytes) + sizeof(USBPCAP_BUFFER_PACKET_HEADER);
+	unsigned char*					packetData	= ((unsigned char*)packetBytes) + header->headerLen;
 
 	bool isPDOtoFDO		= header->info == 0x01;
 	bool isDirectionIn	= (header->endpoint & 0x80) != 0;
-	if (isDirectionIn)
+//	if (isDirectionIn)
+	if (isPDOtoFDO)
 	{
-		assert(isPDOtoFDO);
+//		assert(isPDOtoFDO);
 
 		// recv packets from keyboard
 		int numRead= m_device->read(data, dataBufferSize);
@@ -70,7 +71,7 @@ void	USBDevice::handlePacket(const void* packetBytes, int numBytes)
 	}
 	else
 	{
-		assert(!isPDOtoFDO);
+//		assert(!isPDOtoFDO);
 
 		// send packets to keyboard
 		data[0]= REPORT_ID;	// Report ID for HID descriptor

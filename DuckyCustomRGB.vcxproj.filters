@@ -40,6 +40,9 @@
     <Filter Include="source\usb">
       <UniqueIdentifier>{4ed7d4eb-5c4e-4af0-b9a4-a15b3cceb2e5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="source\mouse">
+      <UniqueIdentifier>{4acfa9b0-2db0-4ab1-a67b-7f10b5d0e6ea}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\audio\Audio.cpp">
@@ -149,6 +152,12 @@
     </ClCompile>
     <ClCompile Include="source\usb\USBDevice.cpp">
       <Filter>source\usb</Filter>
+    </ClCompile>
+    <ClCompile Include="source\mouse\Mouse_CorsairHarpoonRGBPro.cpp">
+      <Filter>source\mouse</Filter>
+    </ClCompile>
+    <ClCompile Include="source\mouse\Mouse.cpp">
+      <Filter>source\mouse</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -285,6 +294,12 @@
     <ClInclude Include="source\usb\USBPcap.h">
       <Filter>source\usb</Filter>
     </ClInclude>
+    <ClInclude Include="source\mouse\Mouse_CorsairHarpoonRGBPro.h">
+      <Filter>source\mouse</Filter>
+    </ClInclude>
+    <ClInclude Include="source\mouse\Mouse.h">
+      <Filter>source\mouse</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="source\keyboard\Keyboard_One2RGB_TKL_connect.inl">
@@ -292,6 +307,12 @@
     </None>
     <None Include="source\keyboard\Keyboard_One2RGB_TKL_disconnect.inl">
       <Filter>source\keyboard</Filter>
+    </None>
+    <None Include="source\mouse\Mouse_CorsairHarpoonRGBPro_connect.inl">
+      <Filter>source\mouse</Filter>
+    </None>
+    <None Include="source\mouse\Mouse_CorsairHarpoonRGBPro_disconnect.inl">
+      <Filter>source\mouse</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
