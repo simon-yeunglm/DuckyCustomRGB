@@ -221,21 +221,19 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	bool ok= SetPriorityClass(processHandle, IDLE_PRIORITY_CLASS);
 	HANDLE threadHandle= GetCurrentThread();
 	ok= SetThreadPriority(threadHandle, THREAD_PRIORITY_IDLE);
-	
-	// init
-	const unsigned short	DuckyVID	= 0x04d9;
-	Audio::init();
-	HID::init();
-	HIDDevice*	deivce	= HIDDevice::createDevice(DuckyVID, 0, 1, 0xff00, 0x01);
-	Keyboard*	keyboard= createKeyboard(deivce, deivce->getProductID());
 
-	Timer timer;
-
-	if (keyboard)
+	// create a new scope to call ~MacroPlayer() before _CrtDumpMemoryLeaks()
 	{
-		// bind keyboard macro
+		// init
+		const unsigned short	DuckyVID	= 0x04d9;
+		Audio::init();
+		HID::init();
+		HIDDevice*	deivce	= HIDDevice::createDevice(DuckyVID, 0, 1, 0xff00, 0x01);
+		Keyboard*	keyboard= createKeyboard(deivce, deivce->getProductID());
+
+		Timer		timer;
 		MacroPlayer	macroPlayer;
-		keyboard->registerKeyPressCallback(&Macrolayer_keyPress, &macroPlayer);
+		RenderGraph*renderGraph= new RenderGraph(keyboard);
 		
 		KeyboardKey		ctrlShiftKeys[]	= {KeyboardKey::Shift_Right	, KeyboardKey::Control_Right};
 		KeyboardState	ctrlShiftState	= KeyboardState(ctrlShiftKeys, _countof(ctrlShiftKeys));
@@ -274,7 +272,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		macroPlayer.addMacro(ctrlHomeState	, 0.0f, 0.0f, 1, new MacroAction_MediaPlayPause());
 		
 		// set keyboard LED
-		RenderGraph* renderGraph= new RenderGraph(keyboard);
 		float3 holdControlColor[]	= { {1.0f, 0.1f, 0.1f}, {0.65f, 0.05f, 0.05f},  };
 		float3 holdShiftColor[]		= { {0.1f, 0.1f, 1.0f}, {0.05f, 0.05f, 0.65f},  };
 		float3 holdAltColor[]		= { {1.0f, 0.9f, 0.1f}, {0.65f, 0.5f, 0.05f},  };
@@ -320,13 +317,19 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 				)
 			)
 		);
-		
-		// try connect to the keyboard
-		keyboard->connect();
 
-		// set all color to black
-		keyboard->commitKeyColor();		
-		Sleep(1000);
+		if (keyboard)
+		{
+			// bind keyboard macro
+			keyboard->registerKeyPressCallback(&Macrolayer_keyPress, &macroPlayer);
+		
+			// try connect to the keyboard
+			keyboard->connect();
+
+			// set all color to black
+			keyboard->commitKeyColor();		
+			Sleep(1000);
+		}
 
 		// create hidden window to listen key press
 		HWND windowHandle= createWindow(hInstance, keyboard);
@@ -349,7 +352,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 			float	elapsedTime		= (float)(frameStartTime - lastFrameTime);
 
 			// update quit timer
-			if (keyboard->isKeyDown(KeyboardKey::Escape))
+			if (keyboard && keyboard->isKeyDown(KeyboardKey::Escape))
 				quitTimer+= Math::min(elapsedTime, 0.5f);	// min to avoid large delta time when wake up from blocking input
 			else
 				quitTimer= 0.0f;
@@ -372,25 +375,28 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 			lastFrameTime= frameStartTime;
 		}
 
-		// unbind keyboard macro
-		keyboard->deregisterKeyPressCallback(&Macrolayer_keyPress, &macroPlayer);
-		SetWindowLongPtr(windowHandle, GWLP_USERDATA, (LONG_PTR)nullptr);
+		// release
+		if (keyboard)
+		{
+			// unbind keyboard macro
+			keyboard->deregisterKeyPressCallback(&Macrolayer_keyPress, &macroPlayer);
 
-		// disconnect keyboard
-		Sleep(1000);
-		keyboard->disconnect();
+			// disconnect keyboard
+			Sleep(1000);
+			keyboard->disconnect();
+			destroyKeyboard(keyboard);
+		}
+		SetWindowLongPtr(windowHandle, GWLP_USERDATA, (LONG_PTR)nullptr);
 		destroyWindow(windowHandle);
 		delete renderGraph;
-	}
 
-	// release
-	destroyKeyboard(keyboard);
-	if (deivce)
-		HIDDevice::destroyDevice(deivce);
-	HID::release();
-	Audio::relrease();
-	if (s_rawInputData)
-		free(s_rawInputData);
+		if (deivce)
+			HIDDevice::destroyDevice(deivce);
+		HID::release();
+		Audio::relrease();
+		if (s_rawInputData)
+			free(s_rawInputData);
+	}
 #if MEM_LEAK_DETECT
 	_CrtDumpMemoryLeaks();
 #endif

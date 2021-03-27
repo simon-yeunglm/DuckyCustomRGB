@@ -65,7 +65,7 @@ float RenderPass_KeyStateBlend::update(	Keyboard* keyboard, float deltaSeconds)
 	int numKeyStates= m_numKeyStates;
 	int activeLayerIdx= 0;
 	for(int i=0; i<numKeyStates; ++i)
-		if (keyboard->isAnyKeyDown(m_keyStates[i]))
+		if (keyboard && keyboard->isAnyKeyDown(m_keyStates[i]))
 		{
 			activeLayerIdx= i + 1;
 			break;

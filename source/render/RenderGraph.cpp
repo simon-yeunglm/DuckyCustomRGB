@@ -13,16 +13,21 @@ RenderGraph::RenderGraph(Keyboard* keyboard)
 {
 	m_pass					= nullptr;
 	m_keyboard				= keyboard;
-	KeyboardLayout layout	= keyboard->getLayout();
-	if (layout == KeyboardLayout::TKL_ANSI)
-		setLayoutTKL_ANSI();
-	else if (layout == KeyboardLayout::Full_ANSI)
-		setLayoutFull_ANSI();
-	else
+	if (keyboard)
 	{
-		assert(false);	// unsupport layout
-		memset(&m_layout, 0, sizeof(m_layout));
+		KeyboardLayout layout	= keyboard->getLayout();
+		if (layout == KeyboardLayout::TKL_ANSI)
+			setLayoutTKL_ANSI();
+		else if (layout == KeyboardLayout::Full_ANSI)
+			setLayoutFull_ANSI();
+		else
+		{
+			assert(false);	// unsupport layout
+			memset(&m_layout, 0, sizeof(m_layout));
+		}
 	}
+	else
+		memset(&m_layout, 0, sizeof(m_layout));
 }
 
 RenderGraph::~RenderGraph()
@@ -165,7 +170,8 @@ void	RenderGraph::addLayoutKeyNumpad()
 void	RenderGraph::setGraph(RenderPass* pass)
 {
 	m_pass= pass;
-	pass->bindKeyboard(m_keyboard);
+	if (m_keyboard)
+		pass->bindKeyboard(m_keyboard);
 }
 
 float	RenderGraph::update(float deltaSeconds)
@@ -175,7 +181,7 @@ float	RenderGraph::update(float deltaSeconds)
 
 void	RenderGraph::render()
 {
-	assert(m_pass != nullptr && m_keyboard != nullptr);
+	assert(m_pass != nullptr);
 	RenderTarget* renderTarget= m_renderTargetPool.allocRT();
 	m_pass->render(&m_layout, &m_renderTargetPool, renderTarget);
 	setKeyboardColor(renderTarget);
@@ -184,6 +190,9 @@ void	RenderGraph::render()
 
 void	RenderGraph::setKeyboardColor(RenderTarget* renderTarget)
 {
+	if (m_keyboard == nullptr)
+		return;
+
 	for(int i=0; i<(int)KeyboardKey::Num; ++i)
 	{
 		int4	pxRange		= m_layout.keyPixelPos[i];
