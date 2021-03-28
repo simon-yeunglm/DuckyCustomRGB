@@ -4,7 +4,7 @@
 
 #include "MacroAction_KeyUp.h"
 
-MacroAction_KeyUp::MacroAction_KeyUp(KeyboardKey key)
+MacroAction_KeyUp::MacroAction_KeyUp(InputKey key)
 	: MacroAction_KeyPress(key)
 {
 	m_isKeyDown	= false;

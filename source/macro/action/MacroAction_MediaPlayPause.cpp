@@ -7,7 +7,7 @@
 #include "keyboard/KeyboardKey.h"
 
 MacroAction_MediaPlayPause::MacroAction_MediaPlayPause()
-	: MacroAction_KeyPress(KeyboardKey::A)
+	: MacroAction_KeyPress(InputKey::A)
 {
 	m_virtualKeyCode= VK_MEDIA_PLAY_PAUSE;
 }

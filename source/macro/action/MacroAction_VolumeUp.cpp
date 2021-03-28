@@ -7,7 +7,7 @@
 #include "keyboard/KeyboardKey.h"
 
 MacroAction_VolumeUp::MacroAction_VolumeUp()
-	: MacroAction_KeyPress(KeyboardKey::A)
+	: MacroAction_KeyPress(InputKey::A)
 {
 	m_virtualKeyCode= VK_VOLUME_UP;
 }

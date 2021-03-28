@@ -11,7 +11,7 @@ struct KeyboardState
 private:
 	unsigned int	keyIsOn[4];
 
-	inline void getIdx(KeyboardKey key, int* arrayIdx, int* bitIdx)const
+	inline void getIdx(InputKey key, int* arrayIdx, int* bitIdx)const
 	{
 		int idx		= (int)key;
 		*arrayIdx	= idx / 32;
@@ -21,12 +21,12 @@ private:
 public:
 	KeyboardState()= default;
 	
-	KeyboardState(KeyboardKey onKey, bool isOn= true):
+	KeyboardState(InputKey onKey, bool isOn= true):
 		KeyboardState(&onKey, 1, isOn)
 	{
 	}
 	
-	KeyboardState(const KeyboardKey* onKeys, int numOnKey, bool isOn= true):KeyboardState(isOn ? 0 : 0xffffffff)
+	KeyboardState(const InputKey* onKeys, int numOnKey, bool isOn= true):KeyboardState(isOn ? 0 : 0xffffffff)
 	{
 		for(int i=0; i<numOnKey; ++i)
 			setKeyIsOn(onKeys[i], isOn);
@@ -57,7 +57,7 @@ public:
 			keyIsOn[i]= 0xffffffff;
 	}
 	// return is changed
-	inline bool	setKeyOn(KeyboardKey key)
+	inline bool	setKeyOn(InputKey key)
 	{
 		int arrayIdx;
 		int bitIdx;
@@ -68,7 +68,7 @@ public:
 		keyIsOn[arrayIdx]		= newKey;
 		return lastKey != newKey;
 	}
-	inline bool	setKeyOff(KeyboardKey key)
+	inline bool	setKeyOff(InputKey key)
 	{
 		int arrayIdx;
 		int bitIdx;
@@ -79,7 +79,7 @@ public:
 		keyIsOn[arrayIdx]		= newKey;
 		return lastKey != newKey;
 	}
-	inline bool	setKeyIsOn(KeyboardKey key, bool isOn)
+	inline bool	setKeyIsOn(InputKey key, bool isOn)
 	{
 		int arrayIdx;
 		int bitIdx;
@@ -90,7 +90,7 @@ public:
 		keyIsOn[arrayIdx]		= newKey;
 		return lastKey != newKey;
 	}
-	inline bool isKeyOn(KeyboardKey key)const
+	inline bool isKeyOn(InputKey key)const
 	{
 		int arrayIdx;
 		int bitIdx;
@@ -115,4 +115,4 @@ public:
 	}
 };
 
-static_assert( sizeof(KeyboardState) * 8 >= (int)KeyboardKey::Num, "Not enough bit flags for all keys.");
+static_assert( sizeof(KeyboardState) * 8 >= (int)InputKey::Num, "Not enough bit flags for all keys.");

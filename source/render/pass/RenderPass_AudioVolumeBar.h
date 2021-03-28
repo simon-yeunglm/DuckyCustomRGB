@@ -5,7 +5,7 @@
 
 #include "../RenderPass.h"
 
-enum class KeyboardKey;
+enum class InputKey;
 
 class RenderPass_AudioVolumeBar : public RenderPass
 {
@@ -22,7 +22,7 @@ protected:
 	virtual void updatePass(	Keyboard* keyboard, float deltaSeconds)override;
 	virtual void renderPass(	const RenderLayout* layout, RenderTargetPool* renderTargetPool, RenderTarget* outputRenderTarget)override;
 
-	void	renderDigit(int digit, float alpha, const KeyboardKey displayKeys[9],const RenderLayout* layout, RenderTarget* outputRenderTarget);
+	void	renderDigit(int digit, float alpha, const InputKey displayKeys[9],const RenderLayout* layout, RenderTarget* outputRenderTarget);
 	
 public:
 	RenderPass_AudioVolumeBar(float fadeInTime, float displayTime, float fadeOutTime, RenderPass* underlyingPass);

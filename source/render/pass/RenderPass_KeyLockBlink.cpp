@@ -10,7 +10,7 @@
 #include "math/Color.h"
 #include "win.h"
 
-static void RenderPass_KeyLockBlink_keyPress(Keyboard* keyboard, KeyboardKey key, bool isPressed, void* userPtr)
+static void RenderPass_KeyLockBlink_keyPress(Keyboard* keyboard, InputKey key, bool isPressed, void* userPtr)
 {
 	RenderPass_KeyLockBlink* pass= (RenderPass_KeyLockBlink*)userPtr;
 	pass->OnKeyPressed(key, isPressed);
@@ -55,14 +55,14 @@ void RenderPass_KeyLockBlink::updatePass(Keyboard* keyboard, float deltaSeconds)
 void RenderPass_KeyLockBlink::renderPass(const RenderLayout* layout, RenderTargetPool* renderTargetPool, RenderTarget* outputRenderTarget)
 {
 	if (m_isLockCaps)
-		renderBlink(KeyboardKey::CapsLock	, layout, outputRenderTarget);
+		renderBlink(InputKey::CapsLock	, layout, outputRenderTarget);
 	if (m_isLockScroll)
-		renderBlink(KeyboardKey::ScrollLock	, layout, outputRenderTarget);
+		renderBlink(InputKey::ScrollLock	, layout, outputRenderTarget);
 //	if (m_isLockNum)
-//		renderBlink(KeyboardKey::NumLock	, layout, outputRenderTarget);
+//		renderBlink(InputKey::NumLock	, layout, outputRenderTarget);
 }
 
-void RenderPass_KeyLockBlink::renderBlink(KeyboardKey key, const RenderLayout* layout, RenderTarget* outputRenderTarget)
+void RenderPass_KeyLockBlink::renderBlink(InputKey key, const RenderLayout* layout, RenderTarget* outputRenderTarget)
 {
 	float blinkMultiplier= m_blinkTimer > 0.5f ?1.6f: 0.25f;
 	int4 pos= layout->keyPixelPos[(int)key];
@@ -81,13 +81,13 @@ void RenderPass_KeyLockBlink::renderBlink(KeyboardKey key, const RenderLayout* l
 		}
 }
 
-void RenderPass_KeyLockBlink::OnKeyPressed(KeyboardKey key, bool isPressed)
+void RenderPass_KeyLockBlink::OnKeyPressed(InputKey key, bool isPressed)
 {
-	if (		key== KeyboardKey::CapsLock)
+	if (		key== InputKey::CapsLock)
 		updateLockCaps();
-	else if (	key== KeyboardKey::ScrollLock)
+	else if (	key== InputKey::ScrollLock)
 		updateLockScroll();
-//	else if (	key== KeyboardKey::NumLock)
+//	else if (	key== InputKey::NumLock)
 //		updateLockNum();
 }
 

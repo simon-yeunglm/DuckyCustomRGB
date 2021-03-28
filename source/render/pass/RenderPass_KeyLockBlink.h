@@ -5,7 +5,7 @@
 
 #include "../RenderPass.h"
 
-enum class KeyboardKey;
+enum class InputKey;
 
 class RenderPass_KeyLockBlink : public RenderPass
 {
@@ -26,11 +26,11 @@ protected:
 	void	updateLockScroll();
 	void	updateLockNum();
 
-	void	renderBlink(KeyboardKey key, const RenderLayout* layout, RenderTarget* outputRenderTarget);
+	void	renderBlink(InputKey key, const RenderLayout* layout, RenderTarget* outputRenderTarget);
 
 public:
 	RenderPass_KeyLockBlink(float blinkSpeed, RenderPass* underlyingPass= nullptr);
 	virtual ~RenderPass_KeyLockBlink();
 	
-	void	OnKeyPressed(KeyboardKey key, bool isPressed);
+	void	OnKeyPressed(InputKey key, bool isPressed);
 };

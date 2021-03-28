@@ -8,5 +8,5 @@
 class MacroAction_KeyDown : public MacroAction_KeyPress
 {
 public:
-	MacroAction_KeyDown(KeyboardKey key);
+	MacroAction_KeyDown(InputKey key);
 };

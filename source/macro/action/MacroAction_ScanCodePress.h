@@ -5,7 +5,7 @@
 
 #include "macro/MacroAction.h"
 
-enum class KeyboardKey;
+enum class InputKey;
 
 class MacroAction_ScanCodePress : public MacroAction
 {

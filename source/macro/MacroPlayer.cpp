@@ -42,7 +42,7 @@ float	MacroPlayer::update(float deltaSeconds)
 		return 0.0f;
 }
 
-void	MacroPlayer::keyStateChanged(Keyboard* keyboard, KeyboardKey key, bool isPressed)
+void	MacroPlayer::keyStateChanged(Keyboard* keyboard, InputKey key, bool isPressed)
 {
 	if (m_executingSequenceIdx != -1)
 	{

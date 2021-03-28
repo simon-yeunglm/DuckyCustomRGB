@@ -137,7 +137,7 @@ void	MacroSequence::restoreModifier()
 
 void	MacroSequence::setModifier(unsigned int flag)
 {
-	KeyboardKey		modifers[]			= { KeyboardKey::Shift_Left, KeyboardKey::Shift_Right	, KeyboardKey::Control_Left	, KeyboardKey::Control_Right, KeyboardKey::Alt_Left	, KeyboardKey::Alt_Right };
+	InputKey		modifers[]			= { InputKey::Shift_Left, InputKey::Shift_Right	, InputKey::Control_Left	, InputKey::Control_Right, InputKey::Alt_Left	, InputKey::Alt_Right };
 	unsigned int	modifierScanCode[]	= { 0x2a					, 0x36						, 0x1d						, 0x1d						, 0x38					, 0x38					};
 	unsigned int	modifersFlag[]		= { 0						, 0							, 0							, KEYEVENTF_EXTENDEDKEY		, 0						, KEYEVENTF_EXTENDEDKEY	};
 	for(int i=0; i<_countof(modifers); ++i)
@@ -154,7 +154,7 @@ void	MacroSequence::setModifier(unsigned int flag)
 		}
 }
 
-bool	MacroSequence::keyStateChanged(Keyboard* keyboard, KeyboardKey key, bool isPressed)
+bool	MacroSequence::keyStateChanged(Keyboard* keyboard, InputKey key, bool isPressed)
 {
 	if (m_isExecuting)
 	{

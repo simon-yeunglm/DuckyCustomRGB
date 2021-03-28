@@ -109,15 +109,15 @@ void RenderPass_AudioVolumeBar::renderPass(	const RenderLayout* layout, RenderTa
 	int digit1	= (volumePercent / 10 )	% 10;
 	int digit2	= (volumePercent / 100)	% 10;
 
-	KeyboardKey keyDigit0[9]= { KeyboardKey::I		, KeyboardKey::O	, KeyboardKey::P,
-								KeyboardKey::K		, KeyboardKey::L	, KeyboardKey::Colon,
-								KeyboardKey::Comma	, KeyboardKey::Dot	, KeyboardKey::ForwardSlash};
-	KeyboardKey keyDigit1[9]= { KeyboardKey::R		, KeyboardKey::T	, KeyboardKey::Y,
-								KeyboardKey::F		, KeyboardKey::G	, KeyboardKey::H,
-								KeyboardKey::V		, KeyboardKey::B	, KeyboardKey::N};
-	KeyboardKey keyDigit2[9]= { KeyboardKey::Q		, KeyboardKey::W	, KeyboardKey::E,
-								KeyboardKey::A		, KeyboardKey::S	, KeyboardKey::D,
-								KeyboardKey::Z		, KeyboardKey::X	, KeyboardKey::C};
+	InputKey keyDigit0[9]= { InputKey::I		, InputKey::O	, InputKey::P,
+								InputKey::K		, InputKey::L	, InputKey::Colon,
+								InputKey::Comma	, InputKey::Dot	, InputKey::ForwardSlash};
+	InputKey keyDigit1[9]= { InputKey::R		, InputKey::T	, InputKey::Y,
+								InputKey::F		, InputKey::G	, InputKey::H,
+								InputKey::V		, InputKey::B	, InputKey::N};
+	InputKey keyDigit2[9]= { InputKey::Q		, InputKey::W	, InputKey::E,
+								InputKey::A		, InputKey::S	, InputKey::D,
+								InputKey::Z		, InputKey::X	, InputKey::C};
 	if (volumePercent >= 100)
 		renderDigit(digit2, alpha, keyDigit2, layout, outputRenderTarget);
 	if (volumePercent >= 10)
@@ -126,7 +126,7 @@ void RenderPass_AudioVolumeBar::renderPass(	const RenderLayout* layout, RenderTa
 	*/
 }
 
-void	RenderPass_AudioVolumeBar::renderDigit(int digit, float alpha, const KeyboardKey displayKeys[9],const RenderLayout* layout, RenderTarget* outputRenderTarget)
+void	RenderPass_AudioVolumeBar::renderDigit(int digit, float alpha, const InputKey displayKeys[9],const RenderLayout* layout, RenderTarget* outputRenderTarget)
 {
 	assert(digit < 10);
 	int onKeyIdx[9];
@@ -234,7 +234,7 @@ void	RenderPass_AudioVolumeBar::renderDigit(int digit, float alpha, const Keyboa
 
 	for(int i=0; i<numKey; ++i)
 	{
-		KeyboardKey key= displayKeys[onKeyIdx[i]];
+		InputKey key= displayKeys[onKeyIdx[i]];
 		int4 pos= layout->keyPixelPos[(int)key];
 		for(int y=pos.y; y<pos.w; ++y)
 			for(int x=pos.x; x<pos.z; ++x)

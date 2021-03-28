@@ -8,7 +8,7 @@
 #include "math/Math.h"
 #include "math/Color.h"
 
-static void RenderPass_Idle_keyPress(Keyboard* keyboard, KeyboardKey key, bool isPressed, void* userPtr)
+static void RenderPass_Idle_keyPress(Keyboard* keyboard, InputKey key, bool isPressed, void* userPtr)
 {
 	RenderPass_Idle* pass= (RenderPass_Idle*)userPtr;
 	pass->OnKeyPressed(key, isPressed);
@@ -274,7 +274,7 @@ void	RenderPass_Idle::changeState(State newState)
 	m_state = newState;
 }
 
-void RenderPass_Idle::OnKeyPressed(KeyboardKey key, bool isPressed)
+void RenderPass_Idle::OnKeyPressed(InputKey key, bool isPressed)
 {
 	if (m_state == State::Idle)
 		changeState(State::WakingUpFromIdle);

@@ -3,7 +3,7 @@
 // by simon yeung, 17/10/2020
 // all rights reserved
 
-enum class KeyboardKey
+enum class InputKey
 {
 	A					, 
 	B					, 
@@ -128,9 +128,18 @@ enum class KeyboardKey
 	NumPad_Extra3		,
 	NumPad_Extra4		,
 
+	// mouse
+	Mouse_Left			,
+	Mouse_Right			,
+	Mouse_Middle		,
+	Mouse_Forward		,
+	Mouse_Back			,
+	Mouse_ScrollUp		,
+	Mouse_ScrollDown	,
+
 	Num					,	// Total number of key caps
 };
 
-const char*		KeyboardKeyToString(KeyboardKey key);
-KeyboardKey		KeyboardKeyFromScanCode(int scanCode, bool hasPrefixE0);
-unsigned char	KeyboardKeyToVirtualKeyCode(KeyboardKey key);
+const char*		KeyboardKeyToString(InputKey key);
+InputKey		KeyboardKeyFromScanCode(int scanCode, bool hasPrefixE0);
+unsigned char	KeyboardKeyToVirtualKeyCode(InputKey key);

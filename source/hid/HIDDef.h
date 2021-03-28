@@ -13,7 +13,15 @@ typedef unsigned long   ULONG;
 typedef USHORT USAGE, *PUSAGE;
 typedef struct _HIDP_PREPARSED_DATA* PHIDP_PREPARSED_DATA;
 
-typedef struct _HIDD_ATTRIBUTES {
+#define HID_USAGE_PAGE_GENERIC          ((USAGE) 0x01)
+#define HID_USAGE_GENERIC_POINTER       ((USAGE) 0x01)
+#define HID_USAGE_GENERIC_MOUSE         ((USAGE) 0x02)
+#define HID_USAGE_GENERIC_JOYSTICK      ((USAGE) 0x04)
+#define HID_USAGE_GENERIC_GAMEPAD       ((USAGE) 0x05)
+#define HID_USAGE_GENERIC_KEYBOARD      ((USAGE) 0x06)
+
+typedef struct _HIDD_ATTRIBUTES
+{
     ULONG   Size; // = sizeof (struct _HIDD_ATTRIBUTES)
 
     //

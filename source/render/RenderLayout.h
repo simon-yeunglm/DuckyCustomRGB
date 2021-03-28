@@ -10,5 +10,5 @@ struct RenderLayout
 {
 	// AABB represent key pixel boundaries
 	// xy= min coordinates, inclusive, zw= max coordinates, exclusive
-	int4	keyPixelPos[(int)KeyboardKey::Num];
+	int4	keyPixelPos[(int)InputKey::Num];
 };

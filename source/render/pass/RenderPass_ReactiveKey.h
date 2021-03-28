@@ -13,14 +13,14 @@ class RenderPass_ReactiveKey : public RenderPass
 protected:
 	struct FadeOutKey
 	{
-		KeyboardKey	key;
+		InputKey	key;
 		float		fadeOut;
 	};
 
 	float3				m_keyDownColor;
 	float				m_fadeOutSpeed;
 	KeyboardState		m_triggerKey;
-	Array<KeyboardKey>	m_downKey;
+	Array<InputKey>	m_downKey;
 	Array<FadeOutKey>	m_fadeKey;
 	bool				m_isUniqueFadeOutKey;
 	
@@ -34,5 +34,5 @@ public:
 	RenderPass_ReactiveKey(const float3& keyDownColor, float fadeOutTIme, const KeyboardState& triggerKey= KeyboardState(0xfffff), RenderPass* underlyingPass= nullptr);
 	virtual ~RenderPass_ReactiveKey();
 
-	void OnKeyPressed(KeyboardKey key, bool isPressed);
+	void OnKeyPressed(InputKey key, bool isPressed);
 };

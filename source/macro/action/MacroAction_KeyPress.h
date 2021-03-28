@@ -5,7 +5,7 @@
 
 #include "macro/MacroAction.h"
 
-enum class KeyboardKey;
+enum class InputKey;
 
 class MacroAction_KeyPress : public MacroAction
 {
@@ -15,7 +15,7 @@ protected:
 	bool			m_isKeyUp;
 
 public:
-	MacroAction_KeyPress(KeyboardKey key);
+	MacroAction_KeyPress(InputKey key);
 	virtual bool	start();
 };
 

@@ -42,7 +42,7 @@ void	Keyboard::reset()
 	memset(m_keys, 0, sizeof(m_keys));
 }
 
-void	Keyboard::addKey(KeyboardKey key, unsigned char colorPacketIdx, unsigned char packetOffset)
+void	Keyboard::addKey(InputKey key, unsigned char colorPacketIdx, unsigned char packetOffset)
 {
 	m_keys[(int)key].packetIdx		= colorPacketIdx+ 1;	// 0 idx is header packet
 	m_keys[(int)key].packetOffset	= packetOffset	+ 1;	// 1 byte for Report ID
@@ -107,7 +107,7 @@ void	Keyboard::setUpPacketHeaders()
 	m_packets[lastPacketIdx].data[1+ 4]= 0xff;
 }
 
-void	Keyboard::setKeyColor(KeyboardKey key, unsigned char R, unsigned char G, unsigned char B)
+void	Keyboard::setKeyColor(InputKey key, unsigned char R, unsigned char G, unsigned char B)
 {
 	const KeyData& keyData= m_keys[(int)key];
 	int packetIdxR= keyData.packetIdx;
@@ -161,132 +161,132 @@ void	Keyboard::commitKeyColor()
 void	Keyboard::addKeyNumPad()
 {
 	// code not tested, reference from DuckyAPI
-	addKey(KeyboardKey::NumLock			, 5, 0x33);
+	addKey(InputKey::NumLock			, 5, 0x33);
 
-	addKey(KeyboardKey::NumPad_0		, 5, 0x3f);
-	addKey(KeyboardKey::NumPad_1		, 5, 0x3c);
-	addKey(KeyboardKey::NumPad_2		, 6, 0x12);
-	addKey(KeyboardKey::NumPad_3		, 6, 0x24);
-	addKey(KeyboardKey::NumPad_4		, 5, 0x39);
-	addKey(KeyboardKey::NumPad_5		, 6, 0x0f);
-	addKey(KeyboardKey::NumPad_6		, 6, 0x21);
-	addKey(KeyboardKey::NumPad_7		, 5, 0x36);
-	addKey(KeyboardKey::NumPad_8		, 6, 0x0c);
-	addKey(KeyboardKey::NumPad_9		, 6, 0x1e);
+	addKey(InputKey::NumPad_0		, 5, 0x3f);
+	addKey(InputKey::NumPad_1		, 5, 0x3c);
+	addKey(InputKey::NumPad_2		, 6, 0x12);
+	addKey(InputKey::NumPad_3		, 6, 0x24);
+	addKey(InputKey::NumPad_4		, 5, 0x39);
+	addKey(InputKey::NumPad_5		, 6, 0x0f);
+	addKey(InputKey::NumPad_6		, 6, 0x21);
+	addKey(InputKey::NumPad_7		, 5, 0x36);
+	addKey(InputKey::NumPad_8		, 6, 0x0c);
+	addKey(InputKey::NumPad_9		, 6, 0x1e);
 
-	addKey(KeyboardKey::NumPad_Plus		, 6, 0x30);
-	addKey(KeyboardKey::NumPad_Minus	, 6, 0x2d);
-	addKey(KeyboardKey::NumPad_Multiply	, 6, 0x1b);
-	addKey(KeyboardKey::NumPad_Divide	, 6, 0x09);
-	addKey(KeyboardKey::NumPad_Dot		, 6, 0x27);
-	addKey(KeyboardKey::NumPad_Enter	, 6, 0x39);
+	addKey(InputKey::NumPad_Plus		, 6, 0x30);
+	addKey(InputKey::NumPad_Minus	, 6, 0x2d);
+	addKey(InputKey::NumPad_Multiply	, 6, 0x1b);
+	addKey(InputKey::NumPad_Divide	, 6, 0x09);
+	addKey(InputKey::NumPad_Dot		, 6, 0x27);
+	addKey(InputKey::NumPad_Enter	, 6, 0x39);
 
-	addKey(KeyboardKey::NumPad_Extra1	, 5, 0x30);
-	addKey(KeyboardKey::NumPad_Extra2	, 6, 0x06);
-	addKey(KeyboardKey::NumPad_Extra3	, 6, 0x18);
-	addKey(KeyboardKey::NumPad_Extra4	, 6, 0x2a);
+	addKey(InputKey::NumPad_Extra1	, 5, 0x30);
+	addKey(InputKey::NumPad_Extra2	, 6, 0x06);
+	addKey(InputKey::NumPad_Extra3	, 6, 0x18);
+	addKey(InputKey::NumPad_Extra4	, 6, 0x2a);
 }
 
 void	Keyboard::addKeyTKL_ANSI()
 {
-	addKey(KeyboardKey::A, 0, 51);
-	addKey(KeyboardKey::B, 2, 24);
-	addKey(KeyboardKey::C, 1, 48);
-	addKey(KeyboardKey::D, 1, 27);
-	addKey(KeyboardKey::E, 1, 24);
-	addKey(KeyboardKey::F, 1, 45);
-	addKey(KeyboardKey::G, 1, 63);
-	addKey(KeyboardKey::H, 2, 21);
-	addKey(KeyboardKey::I, 2, 54);
-	addKey(KeyboardKey::J, 2, 39);
-	addKey(KeyboardKey::K, 2, 57);
-	addKey(KeyboardKey::L, 3, 15);
-	addKey(KeyboardKey::M, 2, 60);
-	addKey(KeyboardKey::N, 2, 42);
-	addKey(KeyboardKey::O, 3, 12);
-	addKey(KeyboardKey::P, 3, 30);
-	addKey(KeyboardKey::Q, 0, 48);
-	addKey(KeyboardKey::R, 1, 42);
-	addKey(KeyboardKey::S, 1,  9);
-	addKey(KeyboardKey::T, 1, 60);
-	addKey(KeyboardKey::U, 2, 36);
-	addKey(KeyboardKey::V, 2,  6);
-	addKey(KeyboardKey::W, 1,  6);
-	addKey(KeyboardKey::X, 1, 30);
-	addKey(KeyboardKey::Y, 2, 18);
-	addKey(KeyboardKey::Z, 1, 12);
+	addKey(InputKey::A, 0, 51);
+	addKey(InputKey::B, 2, 24);
+	addKey(InputKey::C, 1, 48);
+	addKey(InputKey::D, 1, 27);
+	addKey(InputKey::E, 1, 24);
+	addKey(InputKey::F, 1, 45);
+	addKey(InputKey::G, 1, 63);
+	addKey(InputKey::H, 2, 21);
+	addKey(InputKey::I, 2, 54);
+	addKey(InputKey::J, 2, 39);
+	addKey(InputKey::K, 2, 57);
+	addKey(InputKey::L, 3, 15);
+	addKey(InputKey::M, 2, 60);
+	addKey(InputKey::N, 2, 42);
+	addKey(InputKey::O, 3, 12);
+	addKey(InputKey::P, 3, 30);
+	addKey(InputKey::Q, 0, 48);
+	addKey(InputKey::R, 1, 42);
+	addKey(InputKey::S, 1,  9);
+	addKey(InputKey::T, 1, 60);
+	addKey(InputKey::U, 2, 36);
+	addKey(InputKey::V, 2,  6);
+	addKey(InputKey::W, 1,  6);
+	addKey(InputKey::X, 1, 30);
+	addKey(InputKey::Y, 2, 18);
+	addKey(InputKey::Z, 1, 12);
 
-	addKey(KeyboardKey::Num_0, 3, 27);
-	addKey(KeyboardKey::Num_1, 0, 45);
-	addKey(KeyboardKey::Num_2, 0, 63);
-	addKey(KeyboardKey::Num_3, 1, 21);
-	addKey(KeyboardKey::Num_4, 1, 39);
-	addKey(KeyboardKey::Num_5, 1, 57);
-	addKey(KeyboardKey::Num_6, 2, 15);
-	addKey(KeyboardKey::Num_7, 2, 33);
-	addKey(KeyboardKey::Num_8, 2, 51);
-	addKey(KeyboardKey::Num_9, 3,  9);
+	addKey(InputKey::Num_0, 3, 27);
+	addKey(InputKey::Num_1, 0, 45);
+	addKey(InputKey::Num_2, 0, 63);
+	addKey(InputKey::Num_3, 1, 21);
+	addKey(InputKey::Num_4, 1, 39);
+	addKey(InputKey::Num_5, 1, 57);
+	addKey(InputKey::Num_6, 2, 15);
+	addKey(InputKey::Num_7, 2, 33);
+	addKey(InputKey::Num_8, 2, 51);
+	addKey(InputKey::Num_9, 3,  9);
 
-	addKey(KeyboardKey::Escape, 0, 24);
+	addKey(InputKey::Escape, 0, 24);
 
-	addKey(KeyboardKey::Tilde		, 0, 27);
-	addKey(KeyboardKey::Plus		, 3, 63);
-	addKey(KeyboardKey::Minus		, 3, 45);
-	addKey(KeyboardKey::BackSpace	, 4, 39);
+	addKey(InputKey::Tilde		, 0, 27);
+	addKey(InputKey::Plus		, 3, 63);
+	addKey(InputKey::Minus		, 3, 45);
+	addKey(InputKey::BackSpace	, 4, 39);
 
-	addKey(KeyboardKey::Tab			 , 0, 30);
-	addKey(KeyboardKey::Bracket_Open , 3, 48);
-	addKey(KeyboardKey::Bracket_Close, 4,  6);
-	addKey(KeyboardKey::Backslash	 , 4, 42);
+	addKey(InputKey::Tab			 , 0, 30);
+	addKey(InputKey::Bracket_Open , 3, 48);
+	addKey(InputKey::Bracket_Close, 4,  6);
+	addKey(InputKey::Backslash	 , 4, 42);
 
-	addKey(KeyboardKey::CapsLock	, 0, 33);
-	addKey(KeyboardKey::Colon		, 3, 33);
-	addKey(KeyboardKey::Apostrophe	, 3, 51);
-	addKey(KeyboardKey::Enter		, 4, 45);
+	addKey(InputKey::CapsLock	, 0, 33);
+	addKey(InputKey::Colon		, 3, 33);
+	addKey(InputKey::Apostrophe	, 3, 51);
+	addKey(InputKey::Enter		, 4, 45);
 	
-	addKey(KeyboardKey::Shift_Left	, 0, 36);
-	addKey(KeyboardKey::Shift_Right	, 4, 30);
-	addKey(KeyboardKey::Comma		, 3, 18);
-	addKey(KeyboardKey::Dot			, 3, 36);
-	addKey(KeyboardKey::ForwardSlash, 3, 54);
+	addKey(InputKey::Shift_Left	, 0, 36);
+	addKey(InputKey::Shift_Right	, 4, 30);
+	addKey(InputKey::Comma		, 3, 18);
+	addKey(InputKey::Dot			, 3, 36);
+	addKey(InputKey::ForwardSlash, 3, 54);
 
-	addKey(KeyboardKey::SpaceBar	 , 2, 27);
-	addKey(KeyboardKey::Fn			 , 4, 33);
-	addKey(KeyboardKey::Control_Left , 0, 39);
-	addKey(KeyboardKey::Control_Right, 4, 51);
-	addKey(KeyboardKey::Windows_Left , 0, 57);
-	addKey(KeyboardKey::Windows_Right, 4, 15);
-	addKey(KeyboardKey::Alt_Left	 , 1, 15);
-	addKey(KeyboardKey::Alt_Right	 , 3, 39);
+	addKey(InputKey::SpaceBar	 , 2, 27);
+	addKey(InputKey::Fn			 , 4, 33);
+	addKey(InputKey::Control_Left , 0, 39);
+	addKey(InputKey::Control_Right, 4, 51);
+	addKey(InputKey::Windows_Left , 0, 57);
+	addKey(InputKey::Windows_Right, 4, 15);
+	addKey(InputKey::Alt_Left	 , 1, 15);
+	addKey(InputKey::Alt_Right	 , 3, 39);
 
-	addKey(KeyboardKey::Arrow_Up	, 5, 24);
-	addKey(KeyboardKey::Arrow_Down	, 5, 27);
-	addKey(KeyboardKey::Arrow_Left	, 5,  9);
-	addKey(KeyboardKey::Arrow_Right	, 5, 45);
+	addKey(InputKey::Arrow_Up	, 5, 24);
+	addKey(InputKey::Arrow_Down	, 5, 27);
+	addKey(InputKey::Arrow_Left	, 5,  9);
+	addKey(InputKey::Arrow_Right	, 5, 45);
 
-	addKey(KeyboardKey::Insert		, 4, 57);
-	addKey(KeyboardKey::Delete		, 4, 60);
-	addKey(KeyboardKey::Home		, 5, 15);
-	addKey(KeyboardKey::End			, 5, 18);
-	addKey(KeyboardKey::PageUp		, 5, 33);
-	addKey(KeyboardKey::PageDown	, 5, 36);
+	addKey(InputKey::Insert		, 4, 57);
+	addKey(InputKey::Delete		, 4, 60);
+	addKey(InputKey::Home		, 5, 15);
+	addKey(InputKey::End			, 5, 18);
+	addKey(InputKey::PageUp		, 5, 33);
+	addKey(InputKey::PageDown	, 5, 36);
 
-	addKey(KeyboardKey::PrintScreen	, 4, 54);
-	addKey(KeyboardKey::ScrollLock	, 5, 12);
-	addKey(KeyboardKey::Pause		, 5, 30);
+	addKey(InputKey::PrintScreen	, 4, 54);
+	addKey(InputKey::ScrollLock	, 5, 12);
+	addKey(InputKey::Pause		, 5, 30);
 
-	addKey(KeyboardKey::F1			, 0, 60);
-	addKey(KeyboardKey::F2			, 1, 18);
-	addKey(KeyboardKey::F3			, 1, 36);
-	addKey(KeyboardKey::F4			, 1, 54);
-	addKey(KeyboardKey::F5			, 2, 30);
-	addKey(KeyboardKey::F6			, 2, 48);
-	addKey(KeyboardKey::F7			, 3,  6);
-	addKey(KeyboardKey::F8			, 3, 24);
-	addKey(KeyboardKey::F9			, 3, 42);
-	addKey(KeyboardKey::F10			, 3, 60);
-	addKey(KeyboardKey::F11			, 4, 18);
-	addKey(KeyboardKey::F12			, 4, 36);
+	addKey(InputKey::F1			, 0, 60);
+	addKey(InputKey::F2			, 1, 18);
+	addKey(InputKey::F3			, 1, 36);
+	addKey(InputKey::F4			, 1, 54);
+	addKey(InputKey::F5			, 2, 30);
+	addKey(InputKey::F6			, 2, 48);
+	addKey(InputKey::F7			, 3,  6);
+	addKey(InputKey::F8			, 3, 24);
+	addKey(InputKey::F9			, 3, 42);
+	addKey(InputKey::F10			, 3, 60);
+	addKey(InputKey::F11			, 4, 18);
+	addKey(InputKey::F12			, 4, 36);
 	
 	m_layout= KeyboardLayout::TKL_ANSI;
 }
@@ -308,7 +308,7 @@ void	Keyboard::deregisterKeyPressCallback(KeyBoardKeyPressCallback callback, voi
 	m_keyPressCallback.remove({callback, userPtr});
 }
 
-void	Keyboard::keyStateChanged(KeyboardKey key, bool isPressed)
+void	Keyboard::keyStateChanged(InputKey key, bool isPressed)
 {
 	if (m_isPressed.setKeyIsOn(key, isPressed))
 	{

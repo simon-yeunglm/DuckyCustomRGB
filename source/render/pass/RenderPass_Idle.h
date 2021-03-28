@@ -52,5 +52,5 @@ public:
 	
 	virtual float update(	Keyboard* keyboard, float deltaSeconds)override;
 
-	void OnKeyPressed(KeyboardKey key, bool isPressed);
+	void OnKeyPressed(InputKey key, bool isPressed);
 };

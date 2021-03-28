@@ -8,7 +8,7 @@
 #include "keyboard/Keyboard.h"
 #include "math/Math.h"
 
-static void RenderPass_ReactiveKey_keyPress(Keyboard* keyboard, KeyboardKey key, bool isPressed, void* userPtr)
+static void RenderPass_ReactiveKey_keyPress(Keyboard* keyboard, InputKey key, bool isPressed, void* userPtr)
 {
 	RenderPass_ReactiveKey* pass= (RenderPass_ReactiveKey*)userPtr;
 	pass->OnKeyPressed(key, isPressed);
@@ -115,7 +115,7 @@ void RenderPass_ReactiveKey::renderPass(const RenderLayout* layout, RenderTarget
 	}
 }
 
-void RenderPass_ReactiveKey::OnKeyPressed(KeyboardKey key, bool isPressed)
+void RenderPass_ReactiveKey::OnKeyPressed(InputKey key, bool isPressed)
 {
 	if (!m_triggerKey.isKeyOn(key))
 		return;

@@ -8,7 +8,7 @@
 class MacroSequence;
 class Keyboard;
 struct KeyboardState;
-enum class KeyboardKey;
+enum class InputKey;
 
 class MacroPlayer
 {
@@ -23,5 +23,5 @@ public:
 	// reutrn desire FPS
 	float	update(float deltaSeconds);
 	void	addMacro(const KeyboardState& triggerKey, float repeatTime, float firstRepeatDelayTime, int numAction, ...);
-	void	keyStateChanged(Keyboard* keyboard, KeyboardKey key, bool isPressed);
+	void	keyStateChanged(Keyboard* keyboard, InputKey key, bool isPressed);
 };

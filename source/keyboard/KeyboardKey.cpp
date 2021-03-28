@@ -6,38 +6,39 @@
 #include "win.h"
 #include <assert.h>
 
-static const KeyboardKey	s_scanCodeToKey[]=
+static const InputKey	s_scanCodeToKey[]=
 {
-	KeyboardKey::Num			, KeyboardKey::Escape			, KeyboardKey::Num_1		, KeyboardKey::Num_2		, KeyboardKey::Num_3		, KeyboardKey::Num_4			, KeyboardKey::Num_5		, KeyboardKey::Num_6			, KeyboardKey::Num_7		, KeyboardKey::Num_8		, 	// 0   - 9
-	KeyboardKey::Num_9			, KeyboardKey::Num_0			, KeyboardKey::Minus		, KeyboardKey::Plus			, KeyboardKey::BackSpace	, KeyboardKey::Tab				, KeyboardKey::Q			, KeyboardKey::W				, KeyboardKey::E			, KeyboardKey::R			, 	// 10  - 19
-	KeyboardKey::T				, KeyboardKey::Y				, KeyboardKey::U			, KeyboardKey::I			, KeyboardKey::O			, KeyboardKey::P				, KeyboardKey::Bracket_Open	, KeyboardKey::Bracket_Close	, KeyboardKey::Enter		, KeyboardKey::Control_Left	, 	// 20  - 29
-	KeyboardKey::A				, KeyboardKey::S				, KeyboardKey::D			, KeyboardKey::F			, KeyboardKey::G			, KeyboardKey::H				, KeyboardKey::J			, KeyboardKey::K				, KeyboardKey::L			, KeyboardKey::Colon		, 	// 30  - 39
-	KeyboardKey::Apostrophe		, KeyboardKey::Tilde			, KeyboardKey::Shift_Left	, KeyboardKey::Backslash	, KeyboardKey::Z			, KeyboardKey::X				, KeyboardKey::C			, KeyboardKey::V				, KeyboardKey::B			, KeyboardKey::N			, 	// 40  - 49
-	KeyboardKey::M				, KeyboardKey::Comma			, KeyboardKey::Dot			, KeyboardKey::ForwardSlash	, KeyboardKey::Shift_Right	, KeyboardKey::NumPad_Multiply	, KeyboardKey::Alt_Left		, KeyboardKey::SpaceBar			, KeyboardKey::CapsLock		, KeyboardKey::F1			, 	// 50  - 59
-	KeyboardKey::F2				, KeyboardKey::F3				, KeyboardKey::F4			, KeyboardKey::F5			, KeyboardKey::F6			, KeyboardKey::F7				, KeyboardKey::F8			, KeyboardKey::F9				, KeyboardKey::F10			, KeyboardKey::Pause		, 	// 60  - 69	
-	KeyboardKey::ScrollLock		, KeyboardKey::NumPad_7			, KeyboardKey::NumPad_8		, KeyboardKey::NumPad_9		, KeyboardKey::NumPad_Minus	, KeyboardKey::NumPad_4			, KeyboardKey::NumPad_5		, KeyboardKey::NumPad_6			, KeyboardKey::NumPad_Plus	, KeyboardKey::NumPad_1		, 	// 70  - 79
-	KeyboardKey::NumPad_2		, KeyboardKey::NumPad_3			, KeyboardKey::NumPad_0		, KeyboardKey::NumPad_Dot	, KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::F11				, KeyboardKey::F12			, KeyboardKey::Num			, 	// 80  - 89
-	KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num			, 	// 90  - 99
-	KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num			, 	// 100 - 109
-	KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num			, 	// 110 - 119
-	KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num			, 	// 130 - 139
-	KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num			, 	// 120 - 129
-	KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num			, 	// 140 - 149
-	KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::NumPad_Enter	, KeyboardKey::Control_Right	, KeyboardKey::Num			, KeyboardKey::Num			, 	// 150 - 159
-	KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num			, 	// 160 - 169
-	KeyboardKey::PrintScreen	, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num			, 	// 170 - 179
-	KeyboardKey::Num			, KeyboardKey::NumPad_Divide	, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Alt_Right	, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num			, 	// 180 - 189
-	KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Home			, 	// 190 - 199
-	KeyboardKey::Arrow_Up		, KeyboardKey::PageUp			, KeyboardKey::Num			, KeyboardKey::Arrow_Left	, KeyboardKey::Num			, KeyboardKey::Arrow_Right		, KeyboardKey::Num			, KeyboardKey::End				, KeyboardKey::Arrow_Down	, KeyboardKey::PageDown		, 	// 200 - 209
-	KeyboardKey::Insert			, KeyboardKey::Delete			, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Windows_Left	, 	// 210 - 219
-	KeyboardKey::Windows_Right	, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num			, 	// 220 - 229
-	KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num			, 	// 230 - 239
-	KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num			, 	// 240 - 249
-	KeyboardKey::Num			, KeyboardKey::Num				, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num			, KeyboardKey::Num				, //KeyboardKey::Num	, KeyboardKey::Num	, KeyboardKey::Num	, KeyboardKey::Num	, 
+	InputKey::Num			, InputKey::Escape			, InputKey::Num_1		, InputKey::Num_2		, InputKey::Num_3		, InputKey::Num_4			, InputKey::Num_5		, InputKey::Num_6			, InputKey::Num_7		, InputKey::Num_8		, 	// 0   - 9
+	InputKey::Num_9			, InputKey::Num_0			, InputKey::Minus		, InputKey::Plus		, InputKey::BackSpace	, InputKey::Tab				, InputKey::Q			, InputKey::W				, InputKey::E			, InputKey::R			, 	// 10  - 19
+	InputKey::T				, InputKey::Y				, InputKey::U			, InputKey::I			, InputKey::O			, InputKey::P				, InputKey::Bracket_Open, InputKey::Bracket_Close	, InputKey::Enter		, InputKey::Control_Left	, 	// 20  - 29
+	InputKey::A				, InputKey::S				, InputKey::D			, InputKey::F			, InputKey::G			, InputKey::H				, InputKey::J			, InputKey::K				, InputKey::L			, InputKey::Colon		, 	// 30  - 39
+	InputKey::Apostrophe	, InputKey::Tilde			, InputKey::Shift_Left	, InputKey::Backslash	, InputKey::Z			, InputKey::X				, InputKey::C			, InputKey::V				, InputKey::B			, InputKey::N			, 	// 40  - 49
+	InputKey::M				, InputKey::Comma			, InputKey::Dot			, InputKey::ForwardSlash, InputKey::Shift_Right	, InputKey::NumPad_Multiply	, InputKey::Alt_Left	, InputKey::SpaceBar		, InputKey::CapsLock	, InputKey::F1			, 	// 50  - 59
+	InputKey::F2			, InputKey::F3				, InputKey::F4			, InputKey::F5			, InputKey::F6			, InputKey::F7				, InputKey::F8			, InputKey::F9				, InputKey::F10			, InputKey::Pause		, 	// 60  - 69	
+	InputKey::ScrollLock	, InputKey::NumPad_7		, InputKey::NumPad_8	, InputKey::NumPad_9	, InputKey::NumPad_Minus, InputKey::NumPad_4		, InputKey::NumPad_5	, InputKey::NumPad_6		, InputKey::NumPad_Plus	, InputKey::NumPad_1		, 	// 70  - 79
+	InputKey::NumPad_2		, InputKey::NumPad_3		, InputKey::NumPad_0	, InputKey::NumPad_Dot	, InputKey::Num			, InputKey::Num				, InputKey::Num			, InputKey::F11				, InputKey::F12			, InputKey::Num			, 	// 80  - 89
+	InputKey::Num			, InputKey::Num				, InputKey::Num			, InputKey::Num			, InputKey::Num			, InputKey::Num				, InputKey::Num			, InputKey::Num				, InputKey::Num			, InputKey::Num			, 	// 90  - 99
+	InputKey::Num			, InputKey::Num				, InputKey::Num			, InputKey::Num			, InputKey::Num			, InputKey::Num				, InputKey::Num			, InputKey::Num				, InputKey::Num			, InputKey::Num			, 	// 100 - 109
+	InputKey::Num			, InputKey::Num				, InputKey::Num			, InputKey::Num			, InputKey::Num			, InputKey::Num				, InputKey::Num			, InputKey::Num				, InputKey::Num			, InputKey::Num			, 	// 110 - 119
+	InputKey::Num			, InputKey::Num				, InputKey::Num			, InputKey::Num			, InputKey::Num			, InputKey::Num				, InputKey::Num			, InputKey::Num				, InputKey::Num			, InputKey::Num			, 	// 130 - 139
+	InputKey::Num			, InputKey::Num				, InputKey::Num			, InputKey::Num			, InputKey::Num			, InputKey::Num				, InputKey::Num			, InputKey::Num				, InputKey::Num			, InputKey::Num			, 	// 120 - 129
+	InputKey::Num			, InputKey::Num				, InputKey::Num			, InputKey::Num			, InputKey::Num			, InputKey::Num				, InputKey::Num			, InputKey::Num				, InputKey::Num			, InputKey::Num			, 	// 140 - 149
+	InputKey::Num			, InputKey::Num				, InputKey::Num			, InputKey::Num			, InputKey::Num			, InputKey::Num				, InputKey::NumPad_Enter, InputKey::Control_Right	, InputKey::Num			, InputKey::Num			, 	// 150 - 159
+	InputKey::Num			, InputKey::Num				, InputKey::Num			, InputKey::Num			, InputKey::Num			, InputKey::Num				, InputKey::Num			, InputKey::Num				, InputKey::Num			, InputKey::Num			, 	// 160 - 169
+	InputKey::PrintScreen	, InputKey::Num				, InputKey::Num			, InputKey::Num			, InputKey::Num			, InputKey::Num				, InputKey::Num			, InputKey::Num				, InputKey::Num			, InputKey::Num			, 	// 170 - 179
+	InputKey::Num			, InputKey::NumPad_Divide	, InputKey::Num			, InputKey::Num			, InputKey::Alt_Right	, InputKey::Num				, InputKey::Num			, InputKey::Num				, InputKey::Num			, InputKey::Num			, 	// 180 - 189
+	InputKey::Num			, InputKey::Num				, InputKey::Num			, InputKey::Num			, InputKey::Num			, InputKey::Num				, InputKey::Num			, InputKey::Num				, InputKey::Num			, InputKey::Home		, 	// 190 - 199
+	InputKey::Arrow_Up		, InputKey::PageUp			, InputKey::Num			, InputKey::Arrow_Left	, InputKey::Num			, InputKey::Arrow_Right		, InputKey::Num			, InputKey::End				, InputKey::Arrow_Down	, InputKey::PageDown	, 	// 200 - 209
+	InputKey::Insert		, InputKey::Delete			, InputKey::Num			, InputKey::Num			, InputKey::Num			, InputKey::Num				, InputKey::Num			, InputKey::Num				, InputKey::Num			, InputKey::Windows_Left, 	// 210 - 219
+	InputKey::Windows_Right	, InputKey::Num				, InputKey::Num			, InputKey::Num			, InputKey::Num			, InputKey::Num				, InputKey::Num			, InputKey::Num				, InputKey::Num			, InputKey::Num			, 	// 220 - 229
+	InputKey::Num			, InputKey::Num				, InputKey::Num			, InputKey::Num			, InputKey::Num			, InputKey::Num				, InputKey::Num			, InputKey::Num				, InputKey::Num			, InputKey::Num			, 	// 230 - 239
+	InputKey::Num			, InputKey::Num				, InputKey::Num			, InputKey::Num			, InputKey::Num			, InputKey::Num				, InputKey::Num			, InputKey::Num				, InputKey::Num			, InputKey::Num			, 	// 240 - 249
+	InputKey::Num			, InputKey::Num				, InputKey::Num			, InputKey::Num			, InputKey::Num			, InputKey::Num				, InputKey::Num			, InputKey::Num				, InputKey::Num			, InputKey::Num			, 
+	InputKey::Num			, InputKey::Num				, InputKey::Num
 };
 
-static_assert(((int)KeyboardKey::Num) == 108, "Please update s_keyToStr array");
-static const char* s_keyToStr[1+(int)KeyboardKey::Num]
+static_assert(((int)InputKey::Num) == 115, "Please update s_keyToStr array");
+static const char* s_keyToStr[1+(int)InputKey::Num]
 {
 	"A"					, 
 	"B"					, 
@@ -161,11 +162,19 @@ static const char* s_keyToStr[1+(int)KeyboardKey::Num]
 	"NumPad Extra2"		,
 	"NumPad Extra3"		,
 	"NumPad Extra4"		,
+		
+	"Mouse Left"		,
+	"Mouse Right"		,
+	"Mouse Middle"		,
+	"Mouse Forward"		,
+	"Mouse Back"		,
+	"Mouse ScrollUp"	,
+	"Mouse ScrollDown"	,
 
 	"Unknown"			,
 };
 
-static unsigned char s_keyToVK[1+(int)KeyboardKey::Num]
+static unsigned char s_keyToVK[1+(int)InputKey::Num]
 {
 	0x41	, 
 	0x42	, 
@@ -291,23 +300,32 @@ static unsigned char s_keyToVK[1+(int)KeyboardKey::Num]
 	0	,	// no this key
 	0	,	// no this key
 	0	,	// no this key
+
+	// mouse
+	VK_LBUTTON	,
+	VK_RBUTTON	,
+	VK_MBUTTON	,
+	VK_XBUTTON1	,
+	VK_XBUTTON2	,
+	0			,
+	0			,
 };
 
-const char* KeyboardKeyToString(KeyboardKey key)
+const char* KeyboardKeyToString(InputKey key)
 {
-	assert((int)key <= (int)KeyboardKey::Num);
+	assert((int)key <= (int)InputKey::Num);
 	return s_keyToStr[(int)key];
 }
 
-KeyboardKey	KeyboardKeyFromScanCode(int scanCode, bool hasPrefixE0)
+InputKey	KeyboardKeyFromScanCode(int scanCode, bool hasPrefixE0)
 {
 	scanCode+= hasPrefixE0 ? 128 : 0;
-	assert(scanCode < (sizeof(s_scanCodeToKey)/sizeof(KeyboardKey)));
+	assert(scanCode < (sizeof(s_scanCodeToKey)/sizeof(InputKey)));
 	return s_scanCodeToKey[scanCode];
 }
 
-unsigned char	KeyboardKeyToVirtualKeyCode(KeyboardKey key)
+unsigned char	KeyboardKeyToVirtualKeyCode(InputKey key)
 {
-	assert((int)key <= (int)KeyboardKey::Num);
+	assert((int)key <= (int)InputKey::Num);
 	return s_keyToVK[(int)key];
 }

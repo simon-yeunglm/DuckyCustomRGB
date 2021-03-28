@@ -6,7 +6,7 @@
 #include "win.h"
 #include "keyboard/KeyboardKey.h"
 
-MacroAction_KeyPress::MacroAction_KeyPress(KeyboardKey key)
+MacroAction_KeyPress::MacroAction_KeyPress(InputKey key)
 	: MacroAction()
 {
 	m_virtualKeyCode= KeyboardKeyToVirtualKeyCode(key);

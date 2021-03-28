@@ -9,7 +9,7 @@
 
 class Keyboard;
 
-typedef void (*KeyBoardKeyPressCallback)(Keyboard* keyboard, KeyboardKey key, bool isPressed, void* userPtr);
+typedef void (*KeyBoardKeyPressCallback)(Keyboard* keyboard, InputKey key, bool isPressed, void* userPtr);
 
 enum class KeyboardLayout
 {
@@ -51,7 +51,7 @@ protected:
 		unsigned char	data[65];	// [0] is Report ID
 	};
 
-	KeyData			m_keys[(int)KeyboardKey::Num];
+	KeyData			m_keys[(int)InputKey::Num];
 	signed char		m_maxColorPacketIdx;
 	Packet*			m_packets;	// including header and footer packets
 	int				m_packetNum;
@@ -59,7 +59,7 @@ protected:
 	KeyboardState	m_isPressed;
 
 	void	beginAddKey();
-	void	addKey(KeyboardKey key, unsigned char colorPacketIdx, unsigned char packetOffset);
+	void	addKey(InputKey key, unsigned char colorPacketIdx, unsigned char packetOffset);
 	void	endAddKey();
 
 	void	reset();
@@ -74,7 +74,7 @@ public:
 	virtual ~Keyboard();
 	
 	// set key color, but not send to keyboard yet
-	void	setKeyColor(KeyboardKey key, unsigned char R, unsigned char G, unsigned char B);
+	void	setKeyColor(InputKey key, unsigned char R, unsigned char G, unsigned char B);
 
 	// send all key color to keyboard
 	void	commitKeyColor();
@@ -82,9 +82,9 @@ public:
 	void	registerKeyPressCallback(  KeyBoardKeyPressCallback callback, void* userPtr);
 	void	deregisterKeyPressCallback(KeyBoardKeyPressCallback callback, void* userPtr);
 	
-	void	keyStateChanged(KeyboardKey key, bool isPressed);
+	void	keyStateChanged(InputKey key, bool isPressed);
 	inline KeyboardLayout	getLayout() { return m_layout; }
-	inline bool				isKeyDown(KeyboardKey key)const	{ return m_isPressed.isKeyOn(key); }
+	inline bool				isKeyDown(InputKey key)const	{ return m_isPressed.isKeyOn(key); }
 	bool					isAnyKeyDown(const KeyboardState& key)const;
 	bool					isExactKeyDown(const KeyboardState& key)const;
 };

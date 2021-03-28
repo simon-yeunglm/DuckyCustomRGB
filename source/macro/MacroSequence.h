@@ -41,10 +41,10 @@ public:
 
 	// when not executed	return whether the sequence started
 	// otherwise			return whether the sequence is ended
-	bool	keyStateChanged(Keyboard* keyboard, KeyboardKey key, bool isPressed);
+	bool	keyStateChanged(Keyboard* keyboard, InputKey key, bool isPressed);
 
 	inline bool isExecuting()const	{ return m_isExecuting; }
-	inline bool	isTriggerKey(KeyboardKey key)const
+	inline bool	isTriggerKey(InputKey key)const
 	{
 		return m_triggerKey.isKeyOn(key);
 	}
