@@ -353,6 +353,18 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		KeyboardState	ctrlHomeState		= KeyboardState(ctrlHomeKeys, _countof(ctrlHomeKeys));
 		macroPlayer.addMacro(ctrlHomeState	, 0.0f, 0.0f, 1, new MacroAction_MediaPlayPause());
 		
+		InputKey		altMouseScrollUpKeys[]	= {InputKey::Mouse_ScrollUp		, InputKey::Alt_Left};
+		KeyboardState	altMouseScrollUpState	= KeyboardState(altMouseScrollUpKeys, _countof(altMouseScrollUpKeys));
+		macroPlayer.addMacro(altMouseScrollUpState	, 0.0f, 0.0f, 1, new MacroAction_VolumeUp());
+
+		InputKey		altMouseScrollDownKeys[]= {InputKey::Mouse_ScrollDown	, InputKey::Alt_Left};
+		KeyboardState	altMouseScrollDownState	= KeyboardState(altMouseScrollDownKeys, _countof(altMouseScrollDownKeys));
+		macroPlayer.addMacro(altMouseScrollDownState, 0.0f, 0.0f, 1, new MacroAction_VolumeDown());
+		
+		InputKey		altMouseMiddleKeys[]	= {InputKey::Mouse_Middle	, InputKey::Alt_Left};
+		KeyboardState	altMouseMiddleState		= KeyboardState(altMouseMiddleKeys, _countof(altMouseMiddleKeys));
+		macroPlayer.addMacro(altMouseMiddleState, 0.0f, 0.0f, 1, new MacroAction_MediaPlayPause());
+
 		// set keyboard LED
 		float3 holdControlColor[]	= { {1.0f, 0.1f, 0.1f}, {0.65f, 0.05f, 0.05f},  };
 		float3 holdShiftColor[]		= { {0.1f, 0.1f, 1.0f}, {0.05f, 0.05f, 0.65f},  };
