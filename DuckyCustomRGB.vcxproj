@@ -171,6 +171,7 @@
     <ClCompile Include="source\hid\HIDDevice.cpp" />
     <ClCompile Include="source\keyboard\Keyboard.cpp" />
     <ClCompile Include="source\keyboard\KeyboardKey.cpp" />
+    <ClCompile Include="source\keyboard\Keyboard_Null.cpp" />
     <ClCompile Include="source\keyboard\Keyboard_One2RGB_TKL.cpp" />
     <ClCompile Include="source\macro\action\MacroAction_Delay.cpp" />
     <ClCompile Include="source\macro\action\MacroAction_KeyDown.cpp" />
@@ -217,6 +218,7 @@
     <ClInclude Include="source\keyboard\Keyboard.h" />
     <ClInclude Include="source\keyboard\KeyboardKey.h" />
     <ClInclude Include="source\keyboard\KeyboardState.h" />
+    <ClInclude Include="source\keyboard\Keyboard_Null.h" />
     <ClInclude Include="source\keyboard\Keyboard_One2RGB_TKL.h" />
     <ClInclude Include="source\macro\action\MacroAction_Delay.h" />
     <ClInclude Include="source\macro\action\MacroAction_KeyDown.h" />

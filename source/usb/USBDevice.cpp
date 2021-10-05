@@ -10,6 +10,12 @@
 
 #define REPORT_ID	0x00
 
+USBDevice::USBDevice()
+{
+	m_device			= nullptr;
+	m_handledPacketNum	= 0;
+}
+
 USBDevice::USBDevice(HIDDevice* device)
 {
 	assert( device != nullptr );

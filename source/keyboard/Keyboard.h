@@ -57,6 +57,8 @@ protected:
 	int				m_packetNum;
 	KeyboardLayout	m_layout;
 	KeyboardState	m_isPressed;
+	
+	Keyboard();
 
 	void	beginAddKey();
 	void	addKey(InputKey key, unsigned char colorPacketIdx, unsigned char packetOffset);
@@ -77,7 +79,7 @@ public:
 	void	setKeyColor(InputKey key, unsigned char R, unsigned char G, unsigned char B);
 
 	// send all key color to keyboard
-	void	commitKeyColor();
+	virtual void commitKeyColor();
 	
 	void	registerKeyPressCallback(  KeyBoardKeyPressCallback callback, void* userPtr);
 	void	deregisterKeyPressCallback(KeyBoardKeyPressCallback callback, void* userPtr);

@@ -10,6 +10,8 @@ class USBDevice
 protected:
 	HIDDevice*				m_device;
 	int						m_handledPacketNum;
+	
+	USBDevice();
 
 	void	handlePacket(const void* packetBytes, int numBytes);
 	void	wait(int time_ms);

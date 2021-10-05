@@ -17,6 +17,7 @@
 #include "hid/HID.h"
 #include "hid/HIDDevice.h"
 #include "keyboard/Keyboard_One2RGB_TKL.h"
+#include "keyboard/Keyboard_Null.h"
 #include "mouse/Mouse_CorsairHarpoonRGBPro.h"
 #include "util/Timer.h"
 #include "math/Math.h"
@@ -206,17 +207,19 @@ LRESULT CALLBACK WndProc(HWND hWnd,UINT message,WPARAM wParam,LPARAM lParam)
 
 Keyboard*	createKeyboard(HIDDevice* device, unsigned short keyboardID)
 {
-	if (device == nullptr)
-		return nullptr;
-
-	// TODO: use a hash table instead if have too many keyboard type
-	//       and load all the keyboard data from file instead of hard code Keyboard class
-	if (keyboardID == Keyboard_One2RGB_TKL::productID	)	// One 2 RGB TKL ANSI
-		return new Keyboard_One2RGB_TKL(device);
-	if (keyboardID == 0x0348							)	// Shine 7 ISO
-		return nullptr;
+	if (device)
+	{
+		// TODO: use a hash table instead if have too many keyboard type
+		//       and load all the keyboard data from file instead of hard code Keyboard class
+		if (keyboardID == Keyboard_One2RGB_TKL::productID	)	// One 2 RGB TKL ANSI
+			return new Keyboard_One2RGB_TKL(device);
+		if (keyboardID == 0x0348							)	// Shine 7 ISO
+			return nullptr;
+		else
+			return nullptr;
+	}
 	else
-		return nullptr;
+		return new Keyboard_Null();
 }
 
 void		destroyKeyboard(Keyboard* keyboard)

@@ -159,6 +159,9 @@
     <ClCompile Include="source\mouse\Mouse.cpp">
       <Filter>source\mouse</Filter>
     </ClCompile>
+    <ClCompile Include="source\keyboard\Keyboard_Null.cpp">
+      <Filter>source\keyboard</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\audio\Audio.h">
@@ -299,6 +302,9 @@
     </ClInclude>
     <ClInclude Include="source\mouse\Mouse.h">
       <Filter>source\mouse</Filter>
+    </ClInclude>
+    <ClInclude Include="source\keyboard\Keyboard_Null.h">
+      <Filter>source\keyboard</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

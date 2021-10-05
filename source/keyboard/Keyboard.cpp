@@ -10,6 +10,15 @@
 
 #define REPORT_ID	0x00
 
+Keyboard::Keyboard() : USBDevice()
+{
+	m_packets			= nullptr;
+	m_packetNum			= 0;
+	m_layout			= KeyboardLayout::Unknown;
+	m_isPressed.setAllOff();
+	reset();
+}
+
 Keyboard::Keyboard(HIDDevice* device) : USBDevice(device)
 {
 	m_packets			= nullptr;
