@@ -11,8 +11,8 @@ public:
 	Keyboard_Null();
 	virtual ~Keyboard_Null();
 	
-	virtual void commitKeyColor();
-
-	virtual void connect();
-	virtual void disconnect();
+	virtual void commitKeyColor(RenderTarget* renderTarget)override;
+	
+	virtual void	connect()override;
+	virtual void	disconnect()override;
 };

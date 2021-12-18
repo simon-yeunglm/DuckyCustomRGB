@@ -162,6 +162,12 @@
     <ClCompile Include="source\keyboard\Keyboard_Null.cpp">
       <Filter>source\keyboard</Filter>
     </ClCompile>
+    <ClCompile Include="source\keyboard\Keyboard_DropShift.cpp">
+      <Filter>source\keyboard</Filter>
+    </ClCompile>
+    <ClCompile Include="source\render\RenderTarget.cpp">
+      <Filter>source\render</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\audio\Audio.h">
@@ -304,6 +310,9 @@
       <Filter>source\mouse</Filter>
     </ClInclude>
     <ClInclude Include="source\keyboard\Keyboard_Null.h">
+      <Filter>source\keyboard</Filter>
+    </ClInclude>
+    <ClInclude Include="source\keyboard\Keyboard_DropShift.h">
       <Filter>source\keyboard</Filter>
     </ClInclude>
   </ItemGroup>

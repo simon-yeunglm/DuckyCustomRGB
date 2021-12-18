@@ -7,9 +7,11 @@ class HIDDevice;
 
 class USBDevice
 {
+private:
+	int						m_handledPacketNum;
+
 protected:
 	HIDDevice*				m_device;
-	int						m_handledPacketNum;
 	
 	USBDevice();
 

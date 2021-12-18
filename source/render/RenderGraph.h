@@ -25,12 +25,11 @@ private:
 		
 	void	setLayoutTKL_ANSI();
 	void	setLayoutFull_ANSI();
+	void	setLayout_1800_ANSI();
 	
 	void	addLayoutKeyTKL_ANSI();
 	void	addLayoutKeyNumpad();
-
-	// return whether pxRange is valid
-	bool	getRenderTargetAverageColorInRange(RenderTarget* renderTarget, int4 pxRange, float* outR, float* outG, float* outB);
+	void	addLayoutKey_1800_ANSI();
 
 public:
 	RenderGraph(Keyboard* keyboard, Mouse* mouse);

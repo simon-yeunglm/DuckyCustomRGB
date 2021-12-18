@@ -8,6 +8,7 @@
 #include "collection/Array.h"
 
 class Keyboard;
+struct RenderTarget;
 
 typedef void (*KeyBoardKeyPressCallback)(Keyboard* keyboard, InputKey key, bool isPressed, void* userPtr);
 
@@ -20,6 +21,7 @@ enum class KeyboardLayout
 	Full_ANSI,
 	Full_ISO,
 	Full_JIS,
+	_1800_ANSI
 };
 
 class Keyboard : public USBDevice
@@ -42,7 +44,7 @@ private:
 protected:
 	struct KeyData
 	{
-		unsigned	char	packetIdx;		// including the header packet, 0 => not used key
+		unsigned	char	packetIdx;		// including the header packet, 255 => not used key
 		unsigned	char	packetOffset;	// byte offset from the packet start, including the Report ID
 	};
 
@@ -55,17 +57,18 @@ protected:
 	signed char		m_maxColorPacketIdx;
 	Packet*			m_packets;	// including header and footer packets
 	int				m_packetNum;
+	int				m_packetIdxOffset;
 	KeyboardLayout	m_layout;
 	KeyboardState	m_isPressed;
 	
 	Keyboard();
 
-	void	beginAddKey();
-	void	addKey(InputKey key, unsigned char colorPacketIdx, unsigned char packetOffset);
-	void	endAddKey();
+	virtual void	beginAddKey();
+	virtual void	addKey(InputKey key, unsigned char colorPacketIdx, unsigned char packetOffset);
+	virtual void	endAddKey();
 
-	void	reset();
-	void	setUpPacketHeaders();
+	void			reset();
+	virtual void	setUpPacketHeaders();
 	
 	void	addKeyNumPad();
 	void	addKeyTKL_ANSI();
@@ -79,7 +82,7 @@ public:
 	void	setKeyColor(InputKey key, unsigned char R, unsigned char G, unsigned char B);
 
 	// send all key color to keyboard
-	virtual void commitKeyColor();
+	virtual void commitKeyColor(RenderTarget* renderTarget);
 	
 	void	registerKeyPressCallback(  KeyBoardKeyPressCallback callback, void* userPtr);
 	void	deregisterKeyPressCallback(KeyBoardKeyPressCallback callback, void* userPtr);

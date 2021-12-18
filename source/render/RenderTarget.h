@@ -21,6 +21,10 @@ public:
 	inline float4	getPixel(int x, int y)					{ return	pixels[getIdx(x, y)];			}
 	inline void		setPixel(int x, int y, float4 color)	{			pixels[getIdx(x, y)]= color;	}
 	inline void		setPixel(int x, int y, float3 color)	{			pixels[getIdx(x, y)].set(color);}
+	
+	// return whether pxRange is valid
+	bool			getAverageColorInRange(int4 pxRange, float* outR, float* outG, float* outB);
+	bool			getAverageColorInRange(int4 pxRange, unsigned char* outR, unsigned char* outG, unsigned char* outB);
 
 private:
 	float4	pixels[];	// [size.x * size.y], xyz= RGB, z= A

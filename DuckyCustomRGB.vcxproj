@@ -99,6 +99,7 @@
       <ExceptionHandling>false</ExceptionHandling>
       <FloatingPointModel>Fast</FloatingPointModel>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>NotSet</SubSystem>
@@ -116,6 +117,7 @@
       <ExceptionHandling>false</ExceptionHandling>
       <FloatingPointModel>Fast</FloatingPointModel>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>NotSet</SubSystem>
@@ -135,6 +137,7 @@
       <ExceptionHandling>false</ExceptionHandling>
       <FloatingPointModel>Fast</FloatingPointModel>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>NotSet</SubSystem>
@@ -156,6 +159,7 @@
       <ExceptionHandling>false</ExceptionHandling>
       <FloatingPointModel>Fast</FloatingPointModel>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>NotSet</SubSystem>
@@ -171,6 +175,7 @@
     <ClCompile Include="source\hid\HIDDevice.cpp" />
     <ClCompile Include="source\keyboard\Keyboard.cpp" />
     <ClCompile Include="source\keyboard\KeyboardKey.cpp" />
+    <ClCompile Include="source\keyboard\Keyboard_DropShift.cpp" />
     <ClCompile Include="source\keyboard\Keyboard_Null.cpp" />
     <ClCompile Include="source\keyboard\Keyboard_One2RGB_TKL.cpp" />
     <ClCompile Include="source\macro\action\MacroAction_Delay.cpp" />
@@ -202,6 +207,7 @@
     <ClCompile Include="source\render\pass\RenderPass_ReactiveRipple.cpp" />
     <ClCompile Include="source\render\RenderGraph.cpp" />
     <ClCompile Include="source\render\RenderPass.cpp" />
+    <ClCompile Include="source\render\RenderTarget.cpp" />
     <ClCompile Include="source\render\RenderTargetPool.cpp" />
     <ClCompile Include="source\usb\USBDevice.cpp" />
     <ClCompile Include="source\util\Timer.cpp" />
@@ -215,6 +221,7 @@
     <ClInclude Include="source\hid\HID.h" />
     <ClInclude Include="source\hid\HIDDef.h" />
     <ClInclude Include="source\hid\HIDDevice.h" />
+    <ClInclude Include="source\keyboard\Keyboard_DropShift.h" />
     <ClInclude Include="source\keyboard\Keyboard.h" />
     <ClInclude Include="source\keyboard\KeyboardKey.h" />
     <ClInclude Include="source\keyboard\KeyboardState.h" />

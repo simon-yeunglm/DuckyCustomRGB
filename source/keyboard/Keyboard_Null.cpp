@@ -15,7 +15,7 @@ Keyboard_Null::~Keyboard_Null()
 {
 }
 
-void Keyboard_Null::commitKeyColor()
+void Keyboard_Null::commitKeyColor(RenderTarget* renderTarget)
 {
 }
 
