@@ -177,6 +177,11 @@ HIDDevice::~HIDDevice()
 {
 	CloseHandle(m_overlap.hEvent);
 	CloseHandle(m_deviceHandle);
+	int numOverlaps= m_overlaps.num();
+	for(int i=0; i<numOverlaps; ++i)
+		CloseHandle(m_overlaps[i].hEvent);
+	m_overlaps.clear();
+	m_handles.clear();
 }
 
 int	HIDDevice::write(const unsigned char *data, int dataNumByte)
@@ -223,4 +228,100 @@ int HIDDevice::read(unsigned char *data, int dataNumByte)
 
 	return numByteRead;
 #endif
+}
+
+bool HIDDevice::write_read(	unsigned char* write_data[], unsigned char* read_data[], int numData, int dataNumByte)
+{
+	assert(dataNumByte <= m_outputReportLength);
+
+	// create OVERLAPPED struct
+	int numWriteReadOp= numData * 2;
+	m_overlaps.reserve(numWriteReadOp);
+	int numOverlaps= m_overlaps.num();
+	for(int i=numOverlaps; i<numWriteReadOp; ++i)
+	{
+		OVERLAPPED ov;
+		memset(&ov, 0, sizeof(ov));
+		ov.hEvent = CreateEvent(nullptr, false, false, nullptr);
+		m_overlaps.add(ov);
+	}
+	
+	// create handles array for wait operation complete
+	m_handles.reserve( numWriteReadOp);
+	m_handles.clear(true);
+	for(int i=0; i<numWriteReadOp; ++i)
+		m_handles.add(m_overlaps[i].hEvent);
+
+	// perform all write/read request
+	for(int i=0; i<numData; ++i)
+	{
+		// write
+		bool isOk= WriteFile(m_deviceHandle, write_data[i], dataNumByte, nullptr, &m_overlaps[i]);
+		if (!isOk)
+		{
+			if (GetLastError() != ERROR_IO_PENDING) 
+				return false;
+		}
+
+		// read
+		DWORD numByteRead= 0;
+		isOk= ReadFile(m_deviceHandle, read_data[i], dataNumByte, &numByteRead, &m_overlaps[numData + i]);
+		DWORD err;
+		if (!isOk && (err= GetLastError()) != ERROR_IO_PENDING)
+		{
+			// return fail
+			CancelIo(m_deviceHandle);
+			return false;
+		}
+
+//		HANDLE h[2];
+//		h[0]= m_overlaps[i].hEvent;
+//		h[1]= m_overlaps[numData + i].hEvent;
+//		WaitForMultipleObjects(2, h, true, INFINITE);
+	}
+	
+	// wait for all operation to be completed
+	WaitForMultipleObjects(numWriteReadOp, m_handles.getData(), true, INFINITE);
+
+
+	
+//	for(int i=0; i<numData; ++i)
+//	{
+//		// write
+//		bool isOk= WriteFile(m_deviceHandle, write_data[i], dataNumByte, nullptr, &m_overlaps[i]);
+//		if (!isOk)
+//		{
+//			if (GetLastError() != ERROR_IO_PENDING) 
+//				return false;
+//		}
+//	}
+//	
+//	WaitForMultipleObjects(numData, m_handles.getData(), true, INFINITE);
+//
+//	for(int i=0; i<numData; ++i)
+//	{
+//		// read
+//		DWORD numByteRead= 0;
+//		bool isOk= ReadFile(m_deviceHandle, read_data[i], dataNumByte, &numByteRead, &m_overlaps[numData + i]);
+//		DWORD err;
+//		if (!isOk && (err= GetLastError()) != ERROR_IO_PENDING)
+//		{
+//			// return fail
+//			CancelIo(m_deviceHandle);
+//			return false;
+//		}
+//	}
+//
+//	WaitForMultipleObjects(numData, m_handles.getData() + numData, true, INFINITE);
+
+	
+
+	// get read result
+	for(int i=0; i<numData; ++i)
+	{
+		DWORD numByteRead= 0;
+		GetOverlappedResult(m_deviceHandle, &m_overlaps[numData + i], &numByteRead, true);
+	}
+
+	return true;
 }

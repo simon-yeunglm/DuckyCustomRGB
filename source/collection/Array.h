@@ -35,10 +35,15 @@ public:
 		free(m_data);
 	}
 
-	void clear()
+	void clear(bool isKeepAllocMem= false)
 	{
-		free(m_data);
-		preAlloc();
+		if (isKeepAllocMem)
+			m_num= 0;
+		else
+		{
+			free(m_data);
+			preAlloc();
+		}
 	}
 
 	void reserve(int newSize)
@@ -114,5 +119,10 @@ public:
 	{
 		assert(idx < m_num && idx >= 0);
 		return m_data[idx];
+	}
+	
+	inline Type*	getData()
+	{
+		return m_data;
 	}
 };

@@ -15,6 +15,7 @@ Keyboard::Keyboard() : USBDevice()
 	m_packets				= nullptr;
 	m_packetNum				= 0;
 	m_layout				= KeyboardLayout::Unknown;
+	m_isKeyColorReadPacket	= true;
 	m_isPressed.setAllOff();
 	reset();
 }
@@ -24,6 +25,7 @@ Keyboard::Keyboard(HIDDevice* device) : USBDevice(device)
 	m_packets				= nullptr;
 	m_packetNum				= 0;
 	m_layout				= KeyboardLayout::Unknown;
+	m_isKeyColorReadPacket	= true;
 	m_isPressed.setAllOff();
 	reset();
 }
@@ -142,6 +144,7 @@ void	Keyboard::setKeyColor(InputKey key, unsigned char R, unsigned char G, unsig
 
 void	Keyboard::commitKeyColor(RenderTarget* renderTarget)
 {
+#if 1
 	static unsigned char recvData[sizeof(Packet::data)];
 
 	for(int i=0; i<m_packetNum; ++i)
@@ -149,24 +152,47 @@ void	Keyboard::commitKeyColor(RenderTarget* renderTarget)
 		// send packet
 		const Packet& pkt= m_packets[i];
 		int bytes_written= m_device->write(pkt.data, sizeof(Packet::data));
-#if !DEBUG_DISABLE_HID_COMM
-		if (sizeof(Packet::data) != bytes_written)
-			printf("Commit send color error [%i]    %i\n", i, bytes_written);
 
-		// recv ack packet
-		int numRead= m_device->read(recvData, sizeof(recvData));
-		if (!(numRead == 65 && recvData[1] == pkt.data[1] && recvData[2] == pkt.data[2]) )
+		if (m_isKeyColorReadPacket)
 		{
-			printf("Commit recv color error [%i]    %i\n", i, numRead);
+#if !DEBUG_DISABLE_HID_COMM
+			if (sizeof(Packet::data) != bytes_written)
+				printf("Commit send color error [%i]    %i\n", i, bytes_written);
 
-#if 0	// detail debug message
-			for(int i=0; i<numRead; ++i)
-				printf("0x%02x ", ((char*)recvData)[i]);
-			printf("\n\n");
+			// recv ack packet
+			int numRead= m_device->read(recvData, sizeof(recvData));
+			if (!(numRead == 65 && recvData[1] == pkt.data[1] && recvData[2] == pkt.data[2]) )
+			{
+				printf("Commit recv color error [%i]    %i\n", i, numRead);
+
+#if 0		// detail debug message
+				for(int i=0; i<numRead; ++i)
+					printf("0x%02x ", ((char*)recvData)[i]);
+				printf("\n\n");
+#endif
+			}
 #endif
 		}
-#endif
 	}
+
+
+#else
+	static_assert(false, "handle m_isKeyColorReadPacket");
+	// experimental code, it runs faster on Ducky One2, but
+	// unfortunately, Drop Shift will hang...
+	const int maxPackets= 13;
+	assert(m_packetNum < maxPackets);
+	static unsigned char* recvData[maxPackets];
+	static unsigned char recvDataArray[sizeof(Packet::data) * maxPackets];
+	for(int i=0; i<m_packetNum; ++i)
+		recvData[i]= recvDataArray + i * sizeof(Packet::data);
+	
+	static unsigned char* sendData[maxPackets];
+	for(int i=0; i<m_packetNum; ++i)
+		sendData[i]= m_packets[i].data;
+
+	m_device->write_read( sendData, recvData, m_packetNum, sizeof(Packet::data));
+#endif
 }
 
 void	Keyboard::addKeyNumPad()

@@ -60,6 +60,7 @@ protected:
 	int				m_packetIdxOffset;
 	KeyboardLayout	m_layout;
 	KeyboardState	m_isPressed;
+	bool			m_isKeyColorReadPacket;	// need to read the ack packet after commitKeyColor()
 	
 	Keyboard();
 
