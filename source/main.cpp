@@ -312,11 +312,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		// init
 		const unsigned short	DuckyVID	= 0x04d9;
 		const unsigned short	CorsairVID	= 0x1b1c;
-		const unsigned short	DropVID		= 0x04D8;
+		//const unsigned short	DropVID		= 0x04D8;
 		Audio::init();
 		HID::init();
-		HIDDevice*	deivce_keyboard	= HIDDevice::createDevice(DropVID , 0, 1, 0xffbc, 0x0234);	// try Drop keyboards
-		if (deivce_keyboard == nullptr)	// try Ducky keyboards
+		HIDDevice*	//deivce_keyboard	= HIDDevice::createDevice(DropVID , 0, 1, 0xffbc, 0x0234);	// try Drop keyboards
+		//if (deivce_keyboard == nullptr)	// try Ducky keyboards
 			deivce_keyboard			= HIDDevice::createDevice(DuckyVID, 0, 1, 0xff00, 0x01);
 		Keyboard*	keyboard		= createKeyboard(deivce_keyboard, deivce_keyboard ? deivce_keyboard->getProductID() : 0);
 		HIDDevice*	deivce_mouse	= HIDDevice::createDevice(CorsairVID, 0, 1, 0xffc2, 0x04);
