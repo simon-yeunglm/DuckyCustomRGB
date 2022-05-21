@@ -158,20 +158,22 @@ void	Keyboard::commitKeyColor(RenderTarget* renderTarget)
 #if !DEBUG_DISABLE_HID_COMM
 			if (sizeof(Packet::data) != bytes_written)
 				printf("Commit send color error [%i]    %i\n", i, bytes_written);
-
-			// recv ack packet
-			int numRead= m_device->read(recvData, sizeof(recvData));
-			if (!(numRead == 65 && recvData[1] == pkt.data[1] && recvData[2] == pkt.data[2]) )
+			else
 			{
-				printf("Commit recv color error [%i]    %i\n", i, numRead);
+				// recv ack packet
+				int numRead= m_device->read(recvData, sizeof(recvData));
+				if (!(numRead == 65 && recvData[1] == pkt.data[1] && recvData[2] == pkt.data[2]) )
+				{
+					printf("Commit recv color error [%i]    %i\n", i, numRead);
 
-#if 0		// detail debug message
-				for(int i=0; i<numRead; ++i)
-					printf("0x%02x ", ((char*)recvData)[i]);
-				printf("\n\n");
+#if 0				// detail debug message
+					for(int i=0; i<numRead; ++i)
+						printf("0x%02x ", ((char*)recvData)[i]);
+					printf("\n\n");
+#endif
+				}
 #endif
 			}
-#endif
 		}
 	}
 
